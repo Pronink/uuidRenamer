@@ -23,36 +23,7 @@ public class Ventana {
 	private JTextField textoDestino;
 	private Mensaje mensaje=new Mensaje();
 	
-	
-	private boolean comprobarCampos()
-	{
-		boolean todoCorrecto=true;
-		if (textoOrigen.getText().isEmpty() || textoDestino.getText().isEmpty())
-		{
-			System.out.println(mensaje.errorCampoVacio);
-			JOptionPane.showConfirmDialog(null, mensaje.errorCampoVacio, mensaje.nombreVentana, JOptionPane.PLAIN_MESSAGE);
-			todoCorrecto=false;
-		}
-		if (textoOrigen.getText().equals(textoDestino.getText()) && todoCorrecto==true)
-		{
-			System.out.println(mensaje.errorIguales);
-			int sinoVentana=0;
-			sinoVentana=JOptionPane.showConfirmDialog(null, mensaje.errorIguales, mensaje.nombreVentana, JOptionPane.YES_NO_OPTION);
-			if(sinoVentana==0)
-			{
-				todoCorrecto=true;
-			}
-			else
-			{
-				todoCorrecto=false;
-			}
-		}
-		return todoCorrecto;
-	}
-	
-	
-	
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -88,7 +59,7 @@ public class Ventana {
 		} 
 		
 		frmUuidRenamer = new JFrame();
-		frmUuidRenamer.setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana.class.getResource("/recursos/icon.png")));
+		frmUuidRenamer.setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana.class.getResource("icon.png")));
 		frmUuidRenamer.setTitle(mensaje.nombreVentana);
 		frmUuidRenamer.setResizable(false);
 		frmUuidRenamer.setBounds(100, 100, 370, 166);
@@ -138,7 +109,7 @@ public class Ventana {
 			public void mouseClicked(MouseEvent arg0) {
 				boolean copiado=false;
 				System.out.println("Botón 1 pulsado");
-				if(comprobarCampos())
+				if(Dialogo.comprobarCampos(textoOrigen, textoDestino))
 				{
 					try {
 						copiado = Copiar.toNoPremium(textoOrigen.getText(), textoDestino.getText());
@@ -172,7 +143,7 @@ public class Ventana {
 			public void mouseClicked(MouseEvent arg1) {
 				boolean copiado=false;
 				System.out.println("Botón 1 pulsado");
-				if(comprobarCampos())
+				if(Dialogo.comprobarCampos(textoOrigen, textoDestino))
 				{
 					try {
 						copiado = Copiar.toPremium(textoOrigen.getText(), textoDestino.getText());

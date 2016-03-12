@@ -1,6 +1,8 @@
 package uuidRenamer;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class Dialogo {
 
@@ -20,5 +22,33 @@ public class Dialogo {
 			return "";
 		}
 		
+	}
+	
+	
+	public static boolean comprobarCampos(JTextField textoOrigen, JTextField textoDestino)
+	{
+		Mensaje mensaje=new Mensaje();
+		boolean todoCorrecto=true;
+		if (textoOrigen.getText().isEmpty() || textoDestino.getText().isEmpty())
+		{
+			System.out.println(mensaje.errorCampoVacio);
+			JOptionPane.showConfirmDialog(null, mensaje.errorCampoVacio, mensaje.nombreVentana, JOptionPane.PLAIN_MESSAGE);
+			todoCorrecto=false;
+		}
+		if (textoOrigen.getText().equals(textoDestino.getText()) && todoCorrecto==true)
+		{
+			System.out.println(mensaje.errorIguales);
+			int sinoVentana=0;
+			sinoVentana=JOptionPane.showConfirmDialog(null, mensaje.errorIguales, mensaje.nombreVentana, JOptionPane.YES_NO_OPTION);
+			if(sinoVentana==0)
+			{
+				todoCorrecto=true;
+			}
+			else
+			{
+				todoCorrecto=false;
+			}
+		}
+		return todoCorrecto;
 	}
 }
