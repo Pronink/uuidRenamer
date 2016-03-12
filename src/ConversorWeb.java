@@ -8,6 +8,7 @@ public class ConversorWeb {
 
 	public static String toUuid(String nombreUsuario) throws Exception
 	{
+		System.out.println("CONSOLA: "+" Pidiendo respuesta para: "+nombreUsuario);
 		// IMPORTAR WEB
 		URL miWeb = new URL("https://api.mojang.com/users/profiles/minecraft/"+nombreUsuario);
 		BufferedReader lineaLeida = new BufferedReader(new InputStreamReader(miWeb.openStream()));
@@ -40,6 +41,7 @@ public class ConversorWeb {
 	
 	public static String toName(String uuid) throws Exception
 	{
+		System.out.println("CONSOLA: "+" Quitando guiones a: "+uuid);
 		// QUITAR GUIONES A LA UUID
 		StringBuilder uuidB=new StringBuilder(uuid);
 		for (int i = 0; i < uuidB.length(); i++)
@@ -50,6 +52,7 @@ public class ConversorWeb {
 			}
 		}
 		uuid=uuidB.toString();
+		System.out.println("CONSOLA: "+" Pidiendo respuesta para: "+uuid);
 		
 		// IMPORTAR WEB
 		URL miWeb = new URL("https://api.mojang.com/user/profiles/"+uuid+"/names");
@@ -64,7 +67,7 @@ public class ConversorWeb {
 		
 		// EXTRAER UUID
 		System.out.println("CONSOLA: "+" Linea obtenida: "+lineaVerificada);
-		lineaVerificada = lineaVerificada.substring(lineaVerificada.indexOf("\"name\":\"")+8,lineaVerificada.indexOf("\"}]"));
+		lineaVerificada = lineaVerificada.substring(lineaVerificada.indexOf("\"name\":\"")+8,lineaVerificada.indexOf("}]"));
 		System.out.println("CONSOLA: "+" Linea cortada: "+lineaVerificada);
 
 		// RETORNAR EXTRAIDO

@@ -15,14 +15,15 @@ public class Copiar {
 			for (int i = 0; i < jugador.length; i++)
 			{
 				// SI LA WEB NO RESPONDE, NO EXISTE Y POR LO TANTO NO COPIAR
-				if (ConversorWeb.toUuid(Archivo.suNombre(jugador[i]))==null)
+				String convertido=ConversorWeb.toUuid(Archivo.suNombre(jugador[i]));
+				if (convertido==null)
 				{
-					JOptionPane.showConfirmDialog(null, jugador[i]+".dat"+mensaje.errorNoRespuesta, mensaje.nombreVentana, JOptionPane.PLAIN_MESSAGE);
-					System.out.println(mensaje.errorNoRespuesta);
+					JOptionPane.showConfirmDialog(null, jugador[i]+mensaje.errorNoRespuesta, mensaje.nombreVentana, JOptionPane.PLAIN_MESSAGE); //revisar .dat
+					System.out.println(jugador[i]+mensaje.errorNoRespuesta);
 				}
 				else
 				{
-				Archivo.copiar(jugador[i], rutaDestino+ConversorWeb.toUuid(Archivo.suNombre(jugador[i]))+".dat");
+				Archivo.copiar(jugador[i], rutaDestino+convertido+".dat");
 				}
 			}
 			return true;
@@ -39,14 +40,15 @@ public class Copiar {
 			for (int i = 0; i < jugador.length; i++)
 			{
 				// SI LA WEB NO RESPONDE, NO EXISTE Y POR LO TANTO NO COPIAR
-				if (ConversorWeb.toName(Archivo.suNombre(jugador[i]))==null)
+				String convertido=ConversorWeb.toName(Archivo.suNombre(jugador[i]));
+				if (convertido==null)
 				{
-					JOptionPane.showConfirmDialog(null, jugador[i]+".dat"+mensaje.errorNoRespuesta, mensaje.nombreVentana, JOptionPane.PLAIN_MESSAGE);
-					System.out.println(mensaje.errorNoRespuesta);
+					JOptionPane.showConfirmDialog(null, jugador[i]+mensaje.errorNoRespuesta, mensaje.nombreVentana, JOptionPane.PLAIN_MESSAGE); //revisar .dat
+					System.out.println(jugador[i]+mensaje.errorNoRespuesta);
 				}
 				else
 				{
-				Archivo.copiar(jugador[i], rutaDestino+ConversorWeb.toName(Archivo.suNombre(jugador[i]))+".dat");
+				Archivo.copiar(jugador[i], rutaDestino+convertido+".dat");
 				}
 			}
 			return true;
