@@ -1,25 +1,23 @@
 package uuidRenamer;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class Copiar {
 	
-	
-	
-	public static boolean toPremium(String rutaOrigen, String rutaDestino) throws Exception
+
+	public static boolean toNoPremium(String rutaOrigen, String rutaDestino) throws Exception
 	{
-		Mensaje mensaje=new Mensaje();
 		String jugador[]=Archivo.listarDirectorio(rutaOrigen);
 		if(jugador!=null)
 		{
 			for (int i = 0; i < jugador.length; i++)
 			{
-				// SI LA WEB NO RESPONDE, NO EXISTE Y POR LO TANTO NO COPIAR
-				String convertido=ConversorWeb.toUuid(Archivo.suNombre(jugador[i]));
+				String convertido=ConversorWeb.toName(Archivo.suNombre(jugador[i]));
 				if (convertido==null)
 				{
-					JOptionPane.showConfirmDialog(null, jugador[i]+mensaje.errorNoRespuesta, mensaje.nombreVentana, JOptionPane.PLAIN_MESSAGE); //revisar .dat
-					System.out.println(jugador[i]+mensaje.errorNoRespuesta);
+					JOptionPane.showConfirmDialog(null, jugador[i]+Mensaje.msg_errorNoRespuesta, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE); //revisar .dat
+					System.out.println(jugador[i]+Mensaje.msg_errorNoRespuesta);
 				}
 				else
 				{
@@ -31,20 +29,18 @@ public class Copiar {
 		return false;
 	}
 	
-	public static boolean toNoPremium(String rutaOrigen, String rutaDestino) throws Exception
+	public static boolean toPremium(String rutaOrigen, String rutaDestino) throws Exception
 	{
-		Mensaje mensaje=new Mensaje();
 		String jugador[]=Archivo.listarDirectorio(rutaOrigen);
 		if(jugador!=null)
 		{
 			for (int i = 0; i < jugador.length; i++)
 			{
-				// SI LA WEB NO RESPONDE, NO EXISTE Y POR LO TANTO NO COPIAR
-				String convertido=ConversorWeb.toName(Archivo.suNombre(jugador[i]));
+				String convertido=ConversorWeb.toUuid(Archivo.suNombre(jugador[i]));
 				if (convertido==null)
 				{
-					JOptionPane.showConfirmDialog(null, jugador[i]+mensaje.errorNoRespuesta, mensaje.nombreVentana, JOptionPane.PLAIN_MESSAGE); //revisar .dat
-					System.out.println(jugador[i]+mensaje.errorNoRespuesta);
+					JOptionPane.showConfirmDialog(null, jugador[i]+Mensaje.msg_errorNoRespuesta, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE); //revisar .dat
+					System.out.println(jugador[i]+Mensaje.msg_errorNoRespuesta);
 				}
 				else
 				{
@@ -54,5 +50,31 @@ public class Copiar {
 			return true;
 		}
 		return false;
+	}
+	
+	public static boolean comprobarCampos(JTextField textoOrigen, JTextField textoDestino)
+	{
+		boolean todoCorrecto=true;
+		if (textoOrigen.getText().isEmpty() || textoDestino.getText().isEmpty())
+		{
+			System.out.println(Mensaje.msg_errorCampoVacio);
+			JOptionPane.showConfirmDialog(null, Mensaje.msg_errorCampoVacio, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+			todoCorrecto=false;
+		}
+		if (textoOrigen.getText().equals(textoDestino.getText()) && todoCorrecto==true)
+		{
+			System.out.println(Mensaje.msg_errorIguales);
+			int sinoVentana=0;
+			sinoVentana=JOptionPane.showConfirmDialog(null, Mensaje.msg_errorIguales, Mensaje.msg_nombreVentana, JOptionPane.YES_NO_OPTION);
+			if(sinoVentana==0)
+			{
+				todoCorrecto=true;
+			}
+			else
+			{
+				todoCorrecto=false;
+			}
+		}
+		return todoCorrecto;
 	}
 }

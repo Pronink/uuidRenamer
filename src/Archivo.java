@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class Archivo {
@@ -43,7 +44,7 @@ public class Archivo {
 		}
 		catch (IOException e)
 		{
-			//System.out.println(e);
+			System.out.println(e);
 			System.out.println("CONSOLA: "+"Archivo NO copiado");
 		}
 	}
@@ -51,8 +52,7 @@ public class Archivo {
 	// DEVOLVER ARRAY TIPO STRING DE RUTAS ABSOLUTAS DE FICHEROS .bat
 	public static String[] listarDirectorio(String ruta)
 	{
-		Mensaje mensaje=new Mensaje();
-		
+
 		File carpeta = new File(ruta);
 		
 		if(carpeta.exists())
@@ -61,8 +61,8 @@ public class Archivo {
 			File[] listaDeArchivos = carpeta.listFiles();
 			if(listaDeArchivos.length==0)
 			{
-				JOptionPane.showConfirmDialog(null, mensaje.errorDirectorioVacio, mensaje.nombreVentana, JOptionPane.PLAIN_MESSAGE);
-				System.out.println(mensaje.errorDirectorioVacio);
+				JOptionPane.showConfirmDialog(null, Mensaje.msg_errorDirectorioVacio, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+				System.out.println(Mensaje.msg_errorDirectorioVacio);
 				return null;
 			}
 			
@@ -79,8 +79,8 @@ public class Archivo {
 			// DETENER SI NO HAY .dat
 			if (numeroDeArchivos == 0)
 			{
-				JOptionPane.showConfirmDialog(null, mensaje.errorNoExistenDats, mensaje.nombreVentana, JOptionPane.PLAIN_MESSAGE);
-				System.out.println(mensaje.errorNoExistenDats);
+				JOptionPane.showConfirmDialog(null, Mensaje.msg_errorNoExistenDats, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+				System.out.println(Mensaje.msg_errorNoExistenDats);
 				return null;
 			}
 			
@@ -100,8 +100,8 @@ public class Archivo {
 		}
 		else
 		{
-			JOptionPane.showConfirmDialog(null, mensaje.errorDirectorioNoExiste, mensaje.nombreVentana, JOptionPane.PLAIN_MESSAGE);
-			System.out.println(mensaje.errorDirectorioNoExiste);
+			JOptionPane.showConfirmDialog(null, Mensaje.msg_errorDirectorioNoExiste, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+			System.out.println(Mensaje.msg_errorDirectorioNoExiste);
 			return null;
 		}
 
@@ -119,6 +119,22 @@ public class Archivo {
 	}
 	
 	
+	public static String abrir()
+	{
+		JFileChooser llamadaAbrir = new JFileChooser();
+		llamadaAbrir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		llamadaAbrir.setDialogTitle("Selecciona Directorio Origen");
+		if (llamadaAbrir.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+		{
+			return llamadaAbrir.getSelectedFile().getAbsolutePath().replace('\\', '/').concat("/");
+		}
+		else
+		{
+			return "";
+		}
+		
+	}
 	
 	
 }
