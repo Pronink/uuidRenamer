@@ -24,15 +24,15 @@ public class Mensaje {
 	
 
 	// MENSAJES (Tienen que cambiar)
-	public static String msg_errorIguales="La ruta de origen y destino son iguales, esto puede ocasionar sobreescritura y\npérdida de información en caso de error.\n¿Continuar?";
-	public static String msg_errorCampoVacio="Hay uno o varios campos vacíos";
-	public static String msg_errorDirectorioVacio="Uno o varios directorios especificados está vacío";
-	public static String msg_errorDirectorioNoExiste="Uno o varios directorios especificados no existe";
-	public static String msg_errorNoExistenDats="No se encontró ningún archivo .dat de jugadores";
-	public static String msg_copiado="Copiado satisfactorio";
-	public static String msg_noCopiado="No se inició la copia debido a un error";
-	public static String msg_errorNoRespuesta=" no se pudo convertir";
-	public static String msg_seleccionarDirectorio="Seleccione un directorio";
+	public static String msg_errorIguales="";
+	public static String msg_errorCampoVacio="";
+	public static String msg_errorDirectorioVacio="";
+	public static String msg_errorDirectorioNoExiste="";
+	public static String msg_errorNoExistenDats="";
+	public static String msg_copiado="";
+	public static String msg_noCopiado="";
+	public static String msg_errorNoRespuesta="";
+	public static String msg_seleccionarDirectorio="";
 
 
 	private static String idioma="ES";
