@@ -115,10 +115,10 @@ public class Ventana {
 				eventoRuta1();
 			}
 		});
-		textoOrigen.setBounds(99, 8, 256, 20);
+		textoOrigen.setBounds(106, 8, 249, 20);
 		frmUuidRenamer.getContentPane().add(textoOrigen);
 		textoOrigen.setColumns(10);
-		textoDestino.setBounds(99, 33, 256, 20);
+		textoDestino.setBounds(106, 33, 249, 20);
 		frmUuidRenamer.getContentPane().add(textoDestino);
 		textoDestino.setColumns(10);
 		
@@ -139,7 +139,7 @@ public class Ventana {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 61, 344, 1);
 		frmUuidRenamer.getContentPane().add(separator);
-		btn1.setBounds(70, 69, 113, 23);
+		btn1.setBounds(65, 69, 113, 23);
 		frmUuidRenamer.getContentPane().add(btn1);
 		
 // BOTON 2
@@ -151,15 +151,15 @@ public class Ventana {
 				eventoBoton2();
 			}
 		});
-		btn2.setBounds(70, 100, 113, 23);
+		btn2.setBounds(65, 100, 113, 23);
 		frmUuidRenamer.getContentPane().add(btn2);
 		
 		JLabel lblDesc1 = new JLabel(Mensaje.msg_boton1Desc);
-		lblDesc1.setBounds(193, 73, 119, 14);
+		lblDesc1.setBounds(187, 73, 119, 14);
 		frmUuidRenamer.getContentPane().add(lblDesc1);
 		
 		JLabel lblDesc2 = new JLabel(Mensaje.msg_boton2Desc);
-		lblDesc2.setBounds(193, 104, 119, 14);
+		lblDesc2.setBounds(187, 104, 119, 14);
 		frmUuidRenamer.getContentPane().add(lblDesc2);
 		
 		version = new JLabel(mensaje.en_version);

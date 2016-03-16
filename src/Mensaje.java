@@ -32,6 +32,7 @@ public class Mensaje {
 	public static String msg_copiado="Copiado satisfactorio";
 	public static String msg_noCopiado="No se inició la copia debido a un error";
 	public static String msg_errorNoRespuesta=" no se pudo convertir";
+	public static String msg_seleccionarDirectorio="Seleccione un directorio";
 
 
 	private static String idioma="ES";
@@ -41,12 +42,13 @@ public class Mensaje {
 		{
 			msg_errorIguales="The source path and destination are the same,\nthis can cause overwriting if there is any error\nContinue?";
 			msg_errorCampoVacio="There are empty fields";
-			msg_errorDirectorioVacio="The source folder is empy";
-			msg_errorDirectorioNoExiste="One or more specified directory doesn't exist";
-			msg_errorNoExistenDats="No .dat player file found";
+			msg_errorDirectorioVacio="The source folder is empty";
+			msg_errorDirectorioNoExiste="Some specified directories don't exist";
+			msg_errorNoExistenDats="No .dat player files found";
 			msg_copiado="Copied correctly";
 			msg_noCopiado="Copy didn't end due to an error";
-			msg_errorNoRespuesta=" cannot be converted";
+			msg_errorNoRespuesta=" can't be converted";
+			msg_seleccionarDirectorio="Select a folder";
 			
 			idioma="EN";
 		}
@@ -56,10 +58,11 @@ public class Mensaje {
 			msg_errorCampoVacio="Hay uno o varios campos vacíos";
 			msg_errorDirectorioVacio="Uno o varios directorios especificados está vacío";
 			msg_errorDirectorioNoExiste="Uno o varios directorios especificados no existe";
-			msg_errorNoExistenDats="No se encontró ningún archivo .dat de jugadores";
+			msg_errorNoExistenDats="No se encontró ningún archivo .dat";
 			msg_copiado="Copiado satisfactorio";
 			msg_noCopiado="No se inició la copia debido a un error";
 			msg_errorNoRespuesta=" no se pudo convertir";
+			msg_seleccionarDirectorio="Seleccione un directorio";
 			
 			idioma="ES";
 		}

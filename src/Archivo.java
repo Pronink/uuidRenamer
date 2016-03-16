@@ -124,7 +124,7 @@ public class Archivo {
 		JFileChooser llamadaAbrir = new JFileChooser();
 		llamadaAbrir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-		llamadaAbrir.setDialogTitle("Selecciona Directorio Origen");
+		llamadaAbrir.setDialogTitle(Mensaje.msg_seleccionarDirectorio);
 		if (llamadaAbrir.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 		{
 			return llamadaAbrir.getSelectedFile().getAbsolutePath().replace('\\', '/').concat("/");
