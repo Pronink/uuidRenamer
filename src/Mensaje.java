@@ -12,14 +12,14 @@ public class Mensaje {
 	public String en_caja2texto="Destination path";
 	public String en_boton1texto="to no PREMIUM";
 	public String en_boton2texto="to PREMIUM";
-	public String en_version="Under developing";
+	public String en_version="Beta";
 	public String en_idioma="Language:";
 	
 	public String es_caja1texto="Ruta de origen";
 	public String es_caja2texto="Ruta de destino";
 	public String es_boton1texto="a no PREMIUM";
 	public String es_boton2texto="a PREMIUM";
-	public String es_version="En desarrollo";
+	public String es_version="Beta";
 	public String es_idioma="Idioma:";
 	
 

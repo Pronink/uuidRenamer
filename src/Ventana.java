@@ -89,11 +89,11 @@ public class Ventana {
 		frmUuidRenamer.getContentPane().setLayout(null);
 		
 		lblRutaDeOrigen = new JLabel(mensaje.en_caja1texto);
-		lblRutaDeOrigen.setBounds(10, 11, 86, 14);
+		lblRutaDeOrigen.setBounds(10, 11, 113, 14);
 		frmUuidRenamer.getContentPane().add(lblRutaDeOrigen);
 		
 		lblRutaDeDestino = new JLabel(mensaje.en_caja2texto);
-		lblRutaDeDestino.setBounds(10, 36, 86, 14);
+		lblRutaDeDestino.setBounds(10, 36, 113, 14);
 		frmUuidRenamer.getContentPane().add(lblRutaDeDestino);
 		
 // SELECCIONAR DESTINO
@@ -115,10 +115,10 @@ public class Ventana {
 				eventoRuta1();
 			}
 		});
-		textoOrigen.setBounds(106, 8, 249, 20);
+		textoOrigen.setBounds(128, 8, 227, 20);
 		frmUuidRenamer.getContentPane().add(textoOrigen);
 		textoOrigen.setColumns(10);
-		textoDestino.setBounds(106, 33, 249, 20);
+		textoDestino.setBounds(128, 33, 227, 20);
 		frmUuidRenamer.getContentPane().add(textoDestino);
 		textoDestino.setColumns(10);
 		
@@ -155,21 +155,22 @@ public class Ventana {
 		frmUuidRenamer.getContentPane().add(btn2);
 		
 		JLabel lblDesc1 = new JLabel(Mensaje.msg_boton1Desc);
-		lblDesc1.setBounds(187, 73, 119, 14);
+		lblDesc1.setBounds(187, 73, 168, 14);
 		frmUuidRenamer.getContentPane().add(lblDesc1);
 		
 		JLabel lblDesc2 = new JLabel(Mensaje.msg_boton2Desc);
-		lblDesc2.setBounds(187, 104, 119, 14);
+		lblDesc2.setBounds(187, 104, 168, 14);
 		frmUuidRenamer.getContentPane().add(lblDesc2);
 		
 		version = new JLabel(mensaje.en_version);
 		version.setHorizontalAlignment(SwingConstants.RIGHT);
 		version.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		version.setBounds(263, 141, 92, 14);
+		version.setBounds(249, 141, 106, 14);
 		frmUuidRenamer.getContentPane().add(version);
 		
 		lblIdioma = new JLabel(mensaje.en_idioma);
-		lblIdioma.setBounds(10, 141, 60, 14);
+		lblIdioma.setVerticalAlignment(SwingConstants.TOP);
+		lblIdioma.setBounds(10, 141, 67, 19);
 		frmUuidRenamer.getContentPane().add(lblIdioma);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -186,12 +187,12 @@ public class Ventana {
 				rdbtnEspaol = new JRadioButton("Espa\u00F1ol");
 				rdbtnEspaol.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				buttonGroup.add(rdbtnEspaol);
-				rdbtnEspaol.setBounds(131, 137, 67, 23);
+				rdbtnEspaol.setBounds(139, 137, 67, 23);
 				frmUuidRenamer.getContentPane().add(rdbtnEspaol);
 				rdbtnEnglish.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				rdbtnEnglish.setSelected(true);
 				buttonGroup.add(rdbtnEnglish);
-				rdbtnEnglish.setBounds(70, 137, 60, 23);
+				rdbtnEnglish.setBounds(78, 137, 60, 23);
 				frmUuidRenamer.getContentPane().add(rdbtnEnglish);
 	}
 	
