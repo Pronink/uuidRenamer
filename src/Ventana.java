@@ -21,6 +21,9 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import javax.swing.ImageIcon;
 
 public class Ventana {
 
@@ -140,6 +143,7 @@ public class Ventana {
 		separator.setBounds(10, 61, 344, 1);
 		frmUuidRenamer.getContentPane().add(separator);
 		btn1.setBounds(65, 69, 113, 23);
+		btn1.setFocusPainted(false);					// Quedaba muy feo
 		frmUuidRenamer.getContentPane().add(btn1);
 		
 // BOTON 2
@@ -152,6 +156,7 @@ public class Ventana {
 			}
 		});
 		btn2.setBounds(65, 100, 113, 23);
+		btn2.setFocusPainted(false);
 		frmUuidRenamer.getContentPane().add(btn2);
 		
 		JLabel lblDesc1 = new JLabel(Mensaje.msg_boton1Desc);
@@ -178,21 +183,35 @@ public class Ventana {
 		frmUuidRenamer.getContentPane().add(separator_1);
 		
 				rdbtnEnglish = new JRadioButton("English");
-				rdbtnEnglish.addChangeListener(new ChangeListener() {
+				rdbtnEnglish.addFocusListener(new FocusAdapter() {
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						textoOrigen.requestFocus();						// Saltar focus al comienzo
+					}
+				});
+				rdbtnEnglish.addChangeListener(new ChangeListener() {	// Cambiar idioma
 					public void stateChanged(ChangeEvent arg0) {
 						cambiarIdioma();
 					}
 				});
 				
 				rdbtnEspaol = new JRadioButton("Espa\u00F1ol");
+				rdbtnEspaol.addFocusListener(new FocusAdapter() {
+					@Override
+					public void focusGained(FocusEvent e) {
+						textoOrigen.requestFocus();						// Saltar focus al comienzo
+					}
+				});
 				rdbtnEspaol.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				buttonGroup.add(rdbtnEspaol);
 				rdbtnEspaol.setBounds(139, 137, 67, 23);
+				rdbtnEspaol.setFocusPainted(false);
 				frmUuidRenamer.getContentPane().add(rdbtnEspaol);
 				rdbtnEnglish.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				rdbtnEnglish.setSelected(true);
 				buttonGroup.add(rdbtnEnglish);
 				rdbtnEnglish.setBounds(78, 137, 60, 23);
+				rdbtnEnglish.setFocusPainted(false);
 				frmUuidRenamer.getContentPane().add(rdbtnEnglish);
 	}
 	
