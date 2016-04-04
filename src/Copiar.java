@@ -16,12 +16,11 @@ public class Copiar {
 				String convertido=ConversorWeb.toName(Archivo.suNombre(jugador[i]));
 				if (convertido==null)
 				{
-					JOptionPane.showConfirmDialog(null, jugador[i]+Mensaje.msg_errorNoRespuesta, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE); //revisar .dat
-					System.out.println(jugador[i]+Mensaje.msg_errorNoRespuesta);
+					Ventana.log.append(Mensaje.msg_errorNoRespuesta+jugador[i]+"\n\n");
 				}
 				else
 				{
-				Archivo.copiar(jugador[i], rutaDestino+convertido+".dat");
+					Archivo.copiar(jugador[i], rutaDestino+convertido+".dat");
 				}
 			}
 			return true;
@@ -39,12 +38,11 @@ public class Copiar {
 				String convertido=ConversorWeb.toUuid(Archivo.suNombre(jugador[i]));
 				if (convertido==null)
 				{
-					JOptionPane.showConfirmDialog(null, jugador[i]+Mensaje.msg_errorNoRespuesta, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE); //revisar .dat
-					System.out.println(jugador[i]+Mensaje.msg_errorNoRespuesta);
+					Ventana.log.append(Mensaje.msg_errorNoRespuesta+jugador[i]+"\n\n");
 				}
 				else
 				{
-				Archivo.copiar(jugador[i], rutaDestino+convertido+".dat");
+					Archivo.copiar(jugador[i], rutaDestino+convertido+".dat");
 				}
 			}
 			return true;

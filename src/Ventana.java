@@ -1,5 +1,6 @@
 package uuidRenamer;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,12 +19,13 @@ import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
 
 public class Ventana {
 
@@ -33,20 +35,17 @@ public class Ventana {
 	private Mensaje mensaje=new Mensaje();
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	
-	JLabel lblRutaDeOrigen;
-	JLabel lblRutaDeDestino;
-	JButton btn1;
-	JButton btn2;
-	JLabel lblDesc1;
-	JLabel lblDesc2;
-	JLabel version;
-	JLabel lblIdioma;
+	private JLabel lblRutaDeOrigen;
+	private JLabel lblRutaDeDestino;
+	private JButton btn1;
+	private JButton btn2;
+	private JLabel version;
+	private JLabel lblIdioma;
 	
-	JRadioButton rdbtnEnglish;
-	JRadioButton rdbtnEspaol;
+	private JRadioButton rdbtnEnglish;
+	private JRadioButton rdbtnEspaol;
 	
-	
-	
+	public static JTextArea log;
 	
 
 	/**
@@ -87,16 +86,16 @@ public class Ventana {
 		frmUuidRenamer.setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana.class.getResource("icon.png")));
 		frmUuidRenamer.setTitle(Mensaje.msg_nombreVentana);
 		frmUuidRenamer.setResizable(false);
-		frmUuidRenamer.setBounds(100, 100, 370, 192);
+		frmUuidRenamer.setBounds(100, 100, 800, 434);
 		frmUuidRenamer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUuidRenamer.getContentPane().setLayout(null);
 		
 		lblRutaDeOrigen = new JLabel(mensaje.en_caja1texto);
-		lblRutaDeOrigen.setBounds(10, 11, 113, 14);
+		lblRutaDeOrigen.setBounds(10, 24, 113, 14);
 		frmUuidRenamer.getContentPane().add(lblRutaDeOrigen);
 		
 		lblRutaDeDestino = new JLabel(mensaje.en_caja2texto);
-		lblRutaDeDestino.setBounds(10, 36, 113, 14);
+		lblRutaDeDestino.setBounds(10, 49, 113, 14);
 		frmUuidRenamer.getContentPane().add(lblRutaDeDestino);
 		
 // SELECCIONAR DESTINO
@@ -118,10 +117,10 @@ public class Ventana {
 				eventoRuta1();
 			}
 		});
-		textoOrigen.setBounds(128, 8, 227, 20);
+		textoOrigen.setBounds(128, 21, 227, 20);
 		frmUuidRenamer.getContentPane().add(textoOrigen);
 		textoOrigen.setColumns(10);
-		textoDestino.setBounds(128, 33, 227, 20);
+		textoDestino.setBounds(128, 46, 227, 20);
 		frmUuidRenamer.getContentPane().add(textoDestino);
 		textoDestino.setColumns(10);
 		
@@ -140,9 +139,9 @@ public class Ventana {
 		});
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 61, 344, 1);
+		separator.setBounds(10, 81, 344, 1);
 		frmUuidRenamer.getContentPane().add(separator);
-		btn1.setBounds(65, 69, 113, 23);
+		btn1.setBounds(65, 97, 113, 23);
 		btn1.setFocusPainted(false);					// Quedaba muy feo
 		frmUuidRenamer.getContentPane().add(btn1);
 		
@@ -155,31 +154,31 @@ public class Ventana {
 				eventoBoton2();
 			}
 		});
-		btn2.setBounds(65, 100, 113, 23);
+		btn2.setBounds(65, 128, 113, 23);
 		btn2.setFocusPainted(false);
 		frmUuidRenamer.getContentPane().add(btn2);
 		
 		JLabel lblDesc1 = new JLabel(Mensaje.msg_boton1Desc);
-		lblDesc1.setBounds(187, 73, 168, 14);
+		lblDesc1.setBounds(187, 101, 168, 14);
 		frmUuidRenamer.getContentPane().add(lblDesc1);
 		
 		JLabel lblDesc2 = new JLabel(Mensaje.msg_boton2Desc);
-		lblDesc2.setBounds(187, 104, 168, 14);
+		lblDesc2.setBounds(187, 132, 168, 14);
 		frmUuidRenamer.getContentPane().add(lblDesc2);
 		
-		version = new JLabel(mensaje.en_version);
+		version = new JLabel(Mensaje.version);
 		version.setHorizontalAlignment(SwingConstants.RIGHT);
 		version.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		version.setBounds(249, 141, 106, 14);
+		version.setBounds(237, 378, 106, 14);
 		frmUuidRenamer.getContentPane().add(version);
 		
 		lblIdioma = new JLabel(mensaje.en_idioma);
 		lblIdioma.setVerticalAlignment(SwingConstants.TOP);
-		lblIdioma.setBounds(10, 141, 67, 19);
+		lblIdioma.setBounds(10, 378, 67, 19);
 		frmUuidRenamer.getContentPane().add(lblIdioma);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 129, 344, 1);
+		separator_1.setBounds(10, 165, 344, 1);
 		frmUuidRenamer.getContentPane().add(separator_1);
 		
 				rdbtnEnglish = new JRadioButton("English");
@@ -204,15 +203,33 @@ public class Ventana {
 				});
 				rdbtnEspaol.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				buttonGroup.add(rdbtnEspaol);
-				rdbtnEspaol.setBounds(139, 137, 67, 23);
+				rdbtnEspaol.setBounds(139, 374, 67, 23);
 				rdbtnEspaol.setFocusPainted(false);
 				frmUuidRenamer.getContentPane().add(rdbtnEspaol);
 				rdbtnEnglish.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				rdbtnEnglish.setSelected(true);
 				buttonGroup.add(rdbtnEnglish);
-				rdbtnEnglish.setBounds(78, 137, 60, 23);
+				rdbtnEnglish.setBounds(78, 374, 60, 23);
 				rdbtnEnglish.setFocusPainted(false);
 				frmUuidRenamer.getContentPane().add(rdbtnEnglish);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(10, 193, 774, 155);
+				frmUuidRenamer.getContentPane().add(scrollPane);
+				
+				log = new JTextArea();
+				log.setEditable(false);
+				scrollPane.setViewportView(log);
+				
+				JLabel lblLog = new JLabel("Log:");
+				lblLog.setBounds(10, 173, 67, 14);
+				frmUuidRenamer.getContentPane().add(lblLog);
+				
+				JSeparator separator_2 = new JSeparator();
+				separator_2.setBounds(10, 364, 344, 1);
+				frmUuidRenamer.getContentPane().add(separator_2);
+				
+				log.append(Mensaje.msg_programaIniciado+"\n\n");
 	}
 	
 	// ACCIONES DE LOS EVENTOS
@@ -229,7 +246,6 @@ public class Ventana {
 	private void eventoBoton1()
 	{
 		boolean copiado=false;
-		System.out.println("Botón 1 pulsado");
 		if(Copiar.comprobarCampos(textoOrigen, textoDestino)) 								 // SI COMPRUEBA QUE LOS CAMPOS ESTAN BIEN...
 		{
 			try {
@@ -240,20 +256,19 @@ public class Ventana {
 		}
 		if (copiado)																		 // Y MUESTRA SI SE PUDO REALIZAR O NO
 		{
-			JOptionPane.showConfirmDialog(null, Mensaje.msg_copiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
-			System.out.println(Mensaje.msg_copiado);
+			Ventana.log.append(Mensaje.msg_siCopiado+"\n");
+			JOptionPane.showConfirmDialog(null, Mensaje.msg_siCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
+			Ventana.log.append(Mensaje.msg_noCopiado+"\n");
 			JOptionPane.showConfirmDialog(null, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
-			System.out.println(Mensaje.msg_noCopiado);
 		}
 	}
 	
 	private void eventoBoton2()
 	{
 		boolean copiado=false;
-		System.out.println("Botón 1 pulsado");
 		if(Copiar.comprobarCampos(textoOrigen, textoDestino)) 								 // SI COMPRUEBA QUE LOS CAMPOS ESTAN BIEN...
 		{
 			try {
@@ -264,13 +279,13 @@ public class Ventana {
 		}
 		if (copiado)																		 // Y MUESTRA SI SE PUDO REALIZAR O NO
 		{
-			JOptionPane.showConfirmDialog(null, Mensaje.msg_copiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
-			System.out.println(Mensaje.msg_copiado);
+			Ventana.log.append(Mensaje.msg_siCopiado+"\n");
+			JOptionPane.showConfirmDialog(null, Mensaje.msg_siCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
+			Ventana.log.append(Mensaje.msg_noCopiado+"\n");
 			JOptionPane.showConfirmDialog(null, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
-			System.out.println(Mensaje.msg_noCopiado);
 		}
 	}
 	
@@ -283,7 +298,7 @@ public class Ventana {
 			lblRutaDeDestino.setText(mensaje.en_caja2texto);
 			btn1.setText(mensaje.en_boton1texto);
 			btn2.setText(mensaje.en_boton2texto);
-			version.setText(mensaje.en_version);
+			version.setText(Mensaje.version);
 			lblIdioma.setText(mensaje.en_idioma);
 			
 			Mensaje.cambiarIdioma();
@@ -294,7 +309,7 @@ public class Ventana {
 			lblRutaDeDestino.setText(mensaje.es_caja2texto);
 			btn1.setText(mensaje.es_boton1texto);
 			btn2.setText(mensaje.es_boton2texto);
-			version.setText(mensaje.es_version);
+			version.setText(Mensaje.version);
 			lblIdioma.setText(mensaje.es_idioma);
 			
 			Mensaje.cambiarIdioma();

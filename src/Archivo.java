@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 public class Archivo {
 
@@ -39,13 +38,12 @@ public class Archivo {
 			inStream.close();
 			outStream.close();
 
-			System.out.println("CONSOLA: "+"Archivo copiado");
+			Ventana.log.append(Mensaje.msg_done+origen.getName()+Mensaje.msg_copiado+destino.getName()+"\n\n");
 
 		}
 		catch (IOException e)
 		{
 			System.out.println(e);
-			System.out.println("CONSOLA: "+"Archivo NO copiado");
 		}
 	}
 	
@@ -61,8 +59,7 @@ public class Archivo {
 			File[] listaDeArchivos = carpeta.listFiles();
 			if(listaDeArchivos.length==0)
 			{
-				JOptionPane.showConfirmDialog(null, Mensaje.msg_errorDirectorioVacio, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
-				System.out.println(Mensaje.msg_errorDirectorioVacio);
+				Ventana.log.append(Mensaje.msg_errorDirectorioVacio);
 				return null;
 			}
 			
@@ -79,8 +76,7 @@ public class Archivo {
 			// DETENER SI NO HAY .dat
 			if (numeroDeArchivos == 0)
 			{
-				JOptionPane.showConfirmDialog(null, Mensaje.msg_errorNoExistenDats, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
-				System.out.println(Mensaje.msg_errorNoExistenDats);
+				Ventana.log.append(Mensaje.msg_errorNoExistenDats);
 				return null;
 			}
 			
@@ -95,13 +91,11 @@ public class Archivo {
 					j++;
 				}
 			}
-			System.out.println("CONSOLA: "+"Entregado lista de ficheros\n");
 			return lista;
 		}
 		else
 		{
-			JOptionPane.showConfirmDialog(null, Mensaje.msg_errorDirectorioNoExiste, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
-			System.out.println(Mensaje.msg_errorDirectorioNoExiste);
+			Ventana.log.append(Mensaje.msg_errorDirectorioNoExiste);
 			return null;
 		}
 
