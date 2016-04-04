@@ -6,7 +6,6 @@ public class Mensaje {
 	public static String msg_nombreVentana="MC uuid Renamer";
 	public static String msg_boton1Desc="UUID.dat  >  name.dat";
 	public static String msg_boton2Desc="name.dat  >  UUID.dat";
-	public static String version="Beta";
 
 	// INTERFAZ (Son cargados una vez)
 	public String en_caja1texto="Source path";
@@ -41,9 +40,12 @@ public class Mensaje {
 	public static String msg_textoPreparado="";
 	public static String msg_siCopiado="";
 	public static String msg_done="";
-
-
+	
+	public static String about="";
+	
 	private static String idioma="ES";
+	
+	
 	public static void cambiarIdioma() // Se ejecuta en cuanto inicia la aplicacion
 	{
 		if (idioma=="ES")
@@ -67,6 +69,8 @@ public class Mensaje {
 			msg_siCopiado="COPY FINISHED";
 			msg_done="DONE:\t";
 			
+			about="This button is work in progress\n";
+			
 			idioma="EN";
 		}
 		else if (idioma=="EN")
@@ -89,6 +93,8 @@ public class Mensaje {
 			msg_textoPreparado="\tString preparado: ";
 			msg_siCopiado="COPIA FINALIZADA";
 			msg_done="HECHO:\t";
+			
+			about="Este botón todavía no hace nada\n";
 			
 			idioma="ES";
 		}

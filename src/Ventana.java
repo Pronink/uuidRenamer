@@ -39,7 +39,6 @@ public class Ventana {
 	private JLabel lblRutaDeDestino;
 	private JButton btn1;
 	private JButton btn2;
-	private JLabel version;
 	private JLabel lblIdioma;
 	
 	private JRadioButton rdbtnEnglish;
@@ -86,7 +85,7 @@ public class Ventana {
 		frmUuidRenamer.setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana.class.getResource("icon.png")));
 		frmUuidRenamer.setTitle(Mensaje.msg_nombreVentana);
 		frmUuidRenamer.setResizable(false);
-		frmUuidRenamer.setBounds(100, 100, 800, 434);
+		frmUuidRenamer.setBounds(100, 100, 415, 454);
 		frmUuidRenamer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUuidRenamer.getContentPane().setLayout(null);
 		
@@ -117,10 +116,10 @@ public class Ventana {
 				eventoRuta1();
 			}
 		});
-		textoOrigen.setBounds(128, 21, 227, 20);
+		textoOrigen.setBounds(128, 21, 262, 20);
 		frmUuidRenamer.getContentPane().add(textoOrigen);
 		textoOrigen.setColumns(10);
-		textoDestino.setBounds(128, 46, 227, 20);
+		textoDestino.setBounds(128, 46, 262, 20);
 		frmUuidRenamer.getContentPane().add(textoDestino);
 		textoDestino.setColumns(10);
 		
@@ -139,9 +138,9 @@ public class Ventana {
 		});
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 81, 344, 1);
+		separator.setBounds(10, 81, 389, 1);
 		frmUuidRenamer.getContentPane().add(separator);
-		btn1.setBounds(65, 97, 113, 23);
+		btn1.setBounds(78, 98, 113, 23);
 		btn1.setFocusPainted(false);					// Quedaba muy feo
 		frmUuidRenamer.getContentPane().add(btn1);
 		
@@ -154,31 +153,25 @@ public class Ventana {
 				eventoBoton2();
 			}
 		});
-		btn2.setBounds(65, 128, 113, 23);
+		btn2.setBounds(78, 129, 113, 23);
 		btn2.setFocusPainted(false);
 		frmUuidRenamer.getContentPane().add(btn2);
 		
 		JLabel lblDesc1 = new JLabel(Mensaje.msg_boton1Desc);
-		lblDesc1.setBounds(187, 101, 168, 14);
+		lblDesc1.setBounds(211, 102, 168, 14);
 		frmUuidRenamer.getContentPane().add(lblDesc1);
 		
 		JLabel lblDesc2 = new JLabel(Mensaje.msg_boton2Desc);
-		lblDesc2.setBounds(187, 132, 168, 14);
+		lblDesc2.setBounds(211, 133, 168, 14);
 		frmUuidRenamer.getContentPane().add(lblDesc2);
-		
-		version = new JLabel(Mensaje.version);
-		version.setHorizontalAlignment(SwingConstants.RIGHT);
-		version.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		version.setBounds(237, 378, 106, 14);
-		frmUuidRenamer.getContentPane().add(version);
 		
 		lblIdioma = new JLabel(mensaje.en_idioma);
 		lblIdioma.setVerticalAlignment(SwingConstants.TOP);
-		lblIdioma.setBounds(10, 378, 67, 19);
+		lblIdioma.setBounds(10, 399, 67, 19);
 		frmUuidRenamer.getContentPane().add(lblIdioma);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 165, 344, 1);
+		separator_1.setBounds(10, 163, 389, 1);
 		frmUuidRenamer.getContentPane().add(separator_1);
 		
 				rdbtnEnglish = new JRadioButton("English");
@@ -203,18 +196,18 @@ public class Ventana {
 				});
 				rdbtnEspaol.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				buttonGroup.add(rdbtnEspaol);
-				rdbtnEspaol.setBounds(139, 374, 67, 23);
+				rdbtnEspaol.setBounds(139, 395, 67, 23);
 				rdbtnEspaol.setFocusPainted(false);
 				frmUuidRenamer.getContentPane().add(rdbtnEspaol);
 				rdbtnEnglish.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				rdbtnEnglish.setSelected(true);
 				buttonGroup.add(rdbtnEnglish);
-				rdbtnEnglish.setBounds(78, 374, 60, 23);
+				rdbtnEnglish.setBounds(78, 395, 60, 23);
 				rdbtnEnglish.setFocusPainted(false);
 				frmUuidRenamer.getContentPane().add(rdbtnEnglish);
 				
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(10, 193, 774, 155);
+				scrollPane.setBounds(10, 195, 389, 174);
 				frmUuidRenamer.getContentPane().add(scrollPane);
 				
 				log = new JTextArea();
@@ -222,12 +215,21 @@ public class Ventana {
 				scrollPane.setViewportView(log);
 				
 				JLabel lblLog = new JLabel("Log:");
-				lblLog.setBounds(10, 173, 67, 14);
+				lblLog.setBounds(10, 174, 67, 14);
 				frmUuidRenamer.getContentPane().add(lblLog);
 				
 				JSeparator separator_2 = new JSeparator();
-				separator_2.setBounds(10, 364, 344, 1);
+				separator_2.setBounds(10, 387, 389, 1);
 				frmUuidRenamer.getContentPane().add(separator_2);
+				
+				JButton btn_AcercaDe = new JButton("New button");
+				btn_AcercaDe.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						about();
+					}
+				});
+				btn_AcercaDe.setBounds(310, 395, 89, 23);
+				frmUuidRenamer.getContentPane().add(btn_AcercaDe);
 				
 				log.append(Mensaje.msg_programaIniciado+"\n\n");
 	}
@@ -298,7 +300,6 @@ public class Ventana {
 			lblRutaDeDestino.setText(mensaje.en_caja2texto);
 			btn1.setText(mensaje.en_boton1texto);
 			btn2.setText(mensaje.en_boton2texto);
-			version.setText(Mensaje.version);
 			lblIdioma.setText(mensaje.en_idioma);
 			
 			Mensaje.cambiarIdioma();
@@ -309,11 +310,14 @@ public class Ventana {
 			lblRutaDeDestino.setText(mensaje.es_caja2texto);
 			btn1.setText(mensaje.es_boton1texto);
 			btn2.setText(mensaje.es_boton2texto);
-			version.setText(Mensaje.version);
 			lblIdioma.setText(mensaje.es_idioma);
 			
 			Mensaje.cambiarIdioma();
 		}
 		
+	}
+	private void about()
+	{
+		log.append(Mensaje.about);
 	}
 }
