@@ -16,11 +16,13 @@ public class Copiar {
 				String convertido=ConversorWeb.toName(Archivo.suNombre(jugador[i]));
 				if (convertido==null)
 				{
-					Ventana.log.append(Mensaje.msg_errorNoRespuesta+jugador[i]+"\n\n");
+					Ventana.log.append(Mensaje.msg_errorNoRespuesta1+Archivo.suNombreConExtension(jugador[i])+Mensaje.msg_errorNoRespuesta2+"\n");
+					Ventana.refrescarLog();
 				}
 				else
 				{
 					Archivo.copiar(jugador[i], rutaDestino+convertido+".dat");
+					Ventana.refrescarLog();
 				}
 			}
 			return true;
@@ -38,11 +40,13 @@ public class Copiar {
 				String convertido=ConversorWeb.toUuid(Archivo.suNombre(jugador[i]));
 				if (convertido==null)
 				{
-					Ventana.log.append(Mensaje.msg_errorNoRespuesta+jugador[i]+"\n\n");
+					Ventana.log.append(Mensaje.msg_errorNoRespuesta1+Archivo.suNombreConExtension(jugador[i])+Mensaje.msg_errorNoRespuesta2+"\n");
+					Ventana.refrescarLog();
 				}
 				else
 				{
 					Archivo.copiar(jugador[i], rutaDestino+convertido+".dat");
+					Ventana.refrescarLog();
 				}
 			}
 			return true;
@@ -55,15 +59,15 @@ public class Copiar {
 		boolean todoCorrecto=true;
 		if (textoOrigen.getText().isEmpty() || textoDestino.getText().isEmpty())
 		{
-			System.out.println(Mensaje.msg_errorCampoVacio);
-			JOptionPane.showConfirmDialog(null, Mensaje.msg_errorCampoVacio, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+			System.out.println(Mensaje.msg_avisoCampoVacio);
+			JOptionPane.showConfirmDialog(null, Mensaje.msg_avisoCampoVacio, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 			todoCorrecto=false;
 		}
 		if (textoOrigen.getText().equals(textoDestino.getText()) && todoCorrecto==true)
 		{
-			System.out.println(Mensaje.msg_errorIguales);
+			System.out.println(Mensaje.msg_avisoIguales);
 			int sinoVentana=0;
-			sinoVentana=JOptionPane.showConfirmDialog(null, Mensaje.msg_errorIguales, Mensaje.msg_nombreVentana, JOptionPane.YES_NO_OPTION);
+			sinoVentana=JOptionPane.showConfirmDialog(null, Mensaje.msg_avisoIguales, Mensaje.msg_nombreVentana, JOptionPane.YES_NO_OPTION);
 			if(sinoVentana==0)
 			{
 				todoCorrecto=true;

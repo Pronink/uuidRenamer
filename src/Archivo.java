@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
 import javax.swing.JFileChooser;
 
 public class Archivo {
@@ -38,12 +37,13 @@ public class Archivo {
 			inStream.close();
 			outStream.close();
 
-			Ventana.log.append(Mensaje.msg_done+origen.getName()+Mensaje.msg_copiado+destino.getName()+"\n\n");
+			Ventana.log.append(Mensaje.msg_done+origen.getName()+Mensaje.msg_copiado+destino.getName()+"\n");
 
 		}
 		catch (IOException e)
 		{
-			System.out.println(e);
+			Ventana.log.append(Mensaje.msg_errorDirectorioNoExiste+"\n"); //Si esto no funciona hay que hacer
+			System.out.println(e);										  //revisión de errores de campo en el destino.
 		}
 	}
 	
@@ -59,7 +59,7 @@ public class Archivo {
 			File[] listaDeArchivos = carpeta.listFiles();
 			if(listaDeArchivos.length==0)
 			{
-				Ventana.log.append(Mensaje.msg_errorDirectorioVacio);
+				Ventana.log.append(Mensaje.msg_errorDirectorioVacio+"\n");
 				return null;
 			}
 			
@@ -76,7 +76,7 @@ public class Archivo {
 			// DETENER SI NO HAY .dat
 			if (numeroDeArchivos == 0)
 			{
-				Ventana.log.append(Mensaje.msg_errorNoExistenDats);
+				Ventana.log.append(Mensaje.msg_errorNoExistenDats+"\n");
 				return null;
 			}
 			
@@ -95,7 +95,7 @@ public class Archivo {
 		}
 		else
 		{
-			Ventana.log.append(Mensaje.msg_errorDirectorioNoExiste);
+			Ventana.log.append(Mensaje.msg_errorDirectorioNoExiste+"\n"); //Solo lo retorna cuando falla en el origen
 			return null;
 		}
 
@@ -108,6 +108,16 @@ public class Archivo {
 		if(rutaFile.getName().contains(".dat"))
 		{
 			return rutaFile.getName().substring(0,rutaFile.getName().indexOf(".dat"));
+		}
+		return null;
+	}
+	
+	public static String suNombreConExtension(String ruta)
+	{
+		File rutaFile = new File(ruta);
+		if(rutaFile.getName().contains(".dat"))
+		{
+			return rutaFile.getName();
 		}
 		return null;
 	}

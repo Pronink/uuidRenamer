@@ -22,10 +22,12 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
+import javax.swing.text.DefaultCaret;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JScrollPane;
+import java.awt.SystemColor;
 
 public class Ventana {
 
@@ -40,11 +42,20 @@ public class Ventana {
 	private JButton btn1;
 	private JButton btn2;
 	private JLabel lblIdioma;
+	private JButton btn_acercaDe;
 	
 	private JRadioButton rdbtnEnglish;
 	private JRadioButton rdbtnEspaol;
 	
+	
+	
 	public static JTextArea log;
+	public static void refrescarLog()
+	{
+		Ventana.log.update(Ventana.log.getGraphics());
+		DefaultCaret caret = (DefaultCaret) log.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+	}
 	
 
 	/**
@@ -99,6 +110,14 @@ public class Ventana {
 		
 // SELECCIONAR DESTINO
 		textoDestino = new JTextField();
+		textoDestino.setEditable(false);
+		textoDestino.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				btn1.requestFocus();
+			}
+		});
+		textoDestino.setBackground(SystemColor.text);
 		textoDestino.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e)
@@ -109,6 +128,14 @@ public class Ventana {
 		
 // SELECCIONAR ORIGEN
 		textoOrigen = new JTextField();
+		textoOrigen.setEditable(false);
+		textoOrigen.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				btn1.requestFocus();
+			}
+		});
+		textoOrigen.setBackground(SystemColor.text);
 		textoOrigen.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e)
@@ -170,15 +197,29 @@ public class Ventana {
 		lblIdioma.setBounds(10, 399, 67, 19);
 		frmUuidRenamer.getContentPane().add(lblIdioma);
 		
+		btn_acercaDe = new JButton(mensaje.en_acercaDe);
+		btn_acercaDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				about();
+			}
+		});
+		btn_acercaDe.setBounds(310, 395, 89, 23);
+		frmUuidRenamer.getContentPane().add(btn_acercaDe);
+		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 163, 389, 1);
 		frmUuidRenamer.getContentPane().add(separator_1);
 		
 				rdbtnEnglish = new JRadioButton("English");
+				rdbtnEnglish.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						btn1.requestFocus();
+					}
+				});
 				rdbtnEnglish.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusGained(FocusEvent arg0) {
-						textoOrigen.requestFocus();						// Saltar focus al comienzo
+						btn_acercaDe.requestFocus();						// Saltar focus al comienzo
 					}
 				});
 				rdbtnEnglish.addChangeListener(new ChangeListener() {	// Cambiar idioma
@@ -188,10 +229,15 @@ public class Ventana {
 				});
 				
 				rdbtnEspaol = new JRadioButton("Espa\u00F1ol");
+				rdbtnEspaol.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						btn1.requestFocus();
+					}
+				});
 				rdbtnEspaol.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusGained(FocusEvent e) {
-						textoOrigen.requestFocus();						// Saltar focus al comienzo
+						btn_acercaDe.requestFocus();						// Saltar focus al comienzo
 					}
 				});
 				rdbtnEspaol.setFont(new Font("Tahoma", Font.PLAIN, 9));
@@ -211,6 +257,12 @@ public class Ventana {
 				frmUuidRenamer.getContentPane().add(scrollPane);
 				
 				log = new JTextArea();
+				log.addFocusListener(new FocusAdapter() {
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						btn_acercaDe.requestFocus();
+					}
+				});
 				log.setEditable(false);
 				scrollPane.setViewportView(log);
 				
@@ -221,16 +273,7 @@ public class Ventana {
 				JSeparator separator_2 = new JSeparator();
 				separator_2.setBounds(10, 387, 389, 1);
 				frmUuidRenamer.getContentPane().add(separator_2);
-				
-				JButton btn_AcercaDe = new JButton("New button");
-				btn_AcercaDe.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						about();
-					}
-				});
-				btn_AcercaDe.setBounds(310, 395, 89, 23);
-				frmUuidRenamer.getContentPane().add(btn_AcercaDe);
-				
+
 				log.append(Mensaje.msg_programaIniciado+"\n\n");
 	}
 	
@@ -247,6 +290,7 @@ public class Ventana {
 	
 	private void eventoBoton1()
 	{
+		Ventana.log.setText("");
 		boolean copiado=false;
 		if(Copiar.comprobarCampos(textoOrigen, textoDestino)) 								 // SI COMPRUEBA QUE LOS CAMPOS ESTAN BIEN...
 		{
@@ -258,18 +302,19 @@ public class Ventana {
 		}
 		if (copiado)																		 // Y MUESTRA SI SE PUDO REALIZAR O NO
 		{
-			Ventana.log.append(Mensaje.msg_siCopiado+"\n");
-			JOptionPane.showConfirmDialog(null, Mensaje.msg_siCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+			Ventana.log.append(Mensaje.msg_finalizado);
+			JOptionPane.showConfirmDialog(null, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
-			Ventana.log.append(Mensaje.msg_noCopiado+"\n");
+			Ventana.log.append(Mensaje.msg_noCopiado);
 			JOptionPane.showConfirmDialog(null, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	
 	private void eventoBoton2()
 	{
+		Ventana.log.setText("");
 		boolean copiado=false;
 		if(Copiar.comprobarCampos(textoOrigen, textoDestino)) 								 // SI COMPRUEBA QUE LOS CAMPOS ESTAN BIEN...
 		{
@@ -281,12 +326,12 @@ public class Ventana {
 		}
 		if (copiado)																		 // Y MUESTRA SI SE PUDO REALIZAR O NO
 		{
-			Ventana.log.append(Mensaje.msg_siCopiado+"\n");
-			JOptionPane.showConfirmDialog(null, Mensaje.msg_siCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+			Ventana.log.append(Mensaje.msg_finalizado);
+			JOptionPane.showConfirmDialog(null, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
-			Ventana.log.append(Mensaje.msg_noCopiado+"\n");
+			Ventana.log.append(Mensaje.msg_noCopiado);
 			JOptionPane.showConfirmDialog(null, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -301,6 +346,7 @@ public class Ventana {
 			btn1.setText(mensaje.en_boton1texto);
 			btn2.setText(mensaje.en_boton2texto);
 			lblIdioma.setText(mensaje.en_idioma);
+			btn_acercaDe.setText(mensaje.en_acercaDe);
 			
 			Mensaje.cambiarIdioma();
 		}
@@ -311,6 +357,7 @@ public class Ventana {
 			btn1.setText(mensaje.es_boton1texto);
 			btn2.setText(mensaje.es_boton2texto);
 			lblIdioma.setText(mensaje.es_idioma);
+			btn_acercaDe.setText(mensaje.es_acercaDe);
 			
 			Mensaje.cambiarIdioma();
 		}
