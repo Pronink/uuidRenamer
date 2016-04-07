@@ -204,6 +204,7 @@ public class Ventana {
 			}
 		});
 		btn_acercaDe.setBounds(310, 395, 89, 23);
+		btn_acercaDe.setFocusPainted(false);
 		frmUuidRenamer.getContentPane().add(btn_acercaDe);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -257,12 +258,7 @@ public class Ventana {
 				frmUuidRenamer.getContentPane().add(scrollPane);
 				
 				log = new JTextArea();
-				log.addFocusListener(new FocusAdapter() {
-					@Override
-					public void focusGained(FocusEvent arg0) {
-						btn_acercaDe.requestFocus();
-					}
-				});
+				log.setFont(new Font("Tahoma", Font.PLAIN, 11));
 				log.setEditable(false);
 				scrollPane.setViewportView(log);
 				
@@ -366,5 +362,8 @@ public class Ventana {
 	private void about()
 	{
 		log.append(Mensaje.about);
+		About acerca=new About(this.frmUuidRenamer, true);
+		acerca.setLocationRelativeTo(btn_acercaDe);
+		acerca.setVisible(true);
 	}
 }

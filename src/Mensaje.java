@@ -59,7 +59,7 @@ public class Mensaje {
 			msg_programaIniciado="WELCOME TO UUIDRENAMER !!!";
 			msg_finalizado="COPY FINISHED\n";
 			msg_done="DONE:\t";
-			about="This button is work in progress\n";
+			about="";
 			
 			idioma="EN";
 		}
@@ -78,7 +78,7 @@ public class Mensaje {
 			msg_programaIniciado="BIENVENIDO A UUIDRENAMER";
 			msg_finalizado="COPIA FINALIZADA";
 			msg_done="HECHO:\t";
-			about="Este botón todavía no hace nada\n";
+			about="";
 			
 			idioma="ES";
 		}
