@@ -31,10 +31,12 @@ public class About extends JDialog {
 	 */
 	public About(JFrame ventana, boolean modal) {
 		super(ventana,modal);
+		setTitle(Mensaje.about);
+		setResizable(false);
 		
 		Image github=new ImageIcon(this.getClass().getResource("/uuidRenamer/github.png")).getImage();
 		
-		setBounds(100, 100, 369, 224);
+		setBounds(100, 100, 354, 216);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -52,7 +54,7 @@ public class About extends JDialog {
 			contentPanel.add(lblVersion);
 		}
 		
-		JButton btnMyWeb = new JButton("Creator's Web");
+		JButton btnMyWeb = new JButton(Mensaje.about_miWeb);
 		Image imgWeb=new ImageIcon(this.getClass().getResource("/uuidRenamer/web.png")).getImage();
 		btnMyWeb.setMargin(new Insets(0, 0, 0, 16+1));
 		btnMyWeb.setIcon(new ImageIcon(imgWeb));
@@ -65,7 +67,7 @@ public class About extends JDialog {
 		btnMyWeb.setFocusPainted(false);
 		contentPanel.add(btnMyWeb);
 		
-		JButton btnManual = new JButton("Manual");
+		JButton btnManual = new JButton(Mensaje.about_manual);
 		Image imgManual=new ImageIcon(this.getClass().getResource("/uuidRenamer/manual.png")).getImage();
 		btnManual.setMargin(new Insets(0, 0, 0, 16+1));//Pone margen a la derecha de 16 para centrar el texto bien
 		btnManual.setIcon(new ImageIcon(imgManual));
@@ -78,7 +80,7 @@ public class About extends JDialog {
 		btnManual.setFocusPainted(false);
 		contentPanel.add(btnManual);
 		
-		JButton btnUpdates = new JButton("Updates");
+		JButton btnUpdates = new JButton(Mensaje.about_actualizaciones);
 		btnUpdates.setMargin(new Insets(0, 0, 0, 16+1));
 		btnUpdates.setIcon(new ImageIcon(github));
 		btnUpdates.addActionListener(new ActionListener() {
@@ -90,7 +92,7 @@ public class About extends JDialog {
 		btnUpdates.setFocusPainted(false);
 		contentPanel.add(btnUpdates);
 		
-		JButton btnBugs = new JButton("Report a bug");
+		JButton btnBugs = new JButton(Mensaje.about_bugs);
 		btnBugs.setMargin(new Insets(0, 0, 0, 16+1));
 		btnBugs.setIcon(new ImageIcon(github));
 		btnBugs.addActionListener(new ActionListener() {
@@ -102,7 +104,7 @@ public class About extends JDialog {
 		btnBugs.setFocusPainted(false);
 		contentPanel.add(btnBugs);
 		
-		JButton btnGithub = new JButton("Github");
+		JButton btnGithub = new JButton(Mensaje.about_github);
 		btnGithub.setMargin(new Insets(0, 0, 0, 16+1));
 		btnGithub.setIcon(new ImageIcon(github));
 		btnGithub.addActionListener(new ActionListener() {
@@ -114,7 +116,7 @@ public class About extends JDialog {
 		btnGithub.setFocusPainted(false);
 		contentPanel.add(btnGithub);
 		
-		JButton btnMail = new JButton("Send e-mail");
+		JButton btnMail = new JButton(Mensaje.about_miEmail);
 		Image imgMail=new ImageIcon(this.getClass().getResource("/uuidRenamer/email.png")).getImage();
 		btnMail.setMargin(new Insets(0, 0, 0, 16+1));
 		btnMail.setIcon(new ImageIcon(imgMail));

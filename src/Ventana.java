@@ -361,7 +361,6 @@ public class Ventana {
 	}
 	private void about()
 	{
-		log.append(Mensaje.about);
 		About acerca=new About(this.frmUuidRenamer, true);
 		acerca.setLocationRelativeTo(btn_acercaDe);
 		acerca.setVisible(true);

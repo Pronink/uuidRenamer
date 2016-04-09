@@ -37,7 +37,14 @@ public class Mensaje {
 	public static String msg_programaIniciado="";
 	public static String msg_finalizado="";
 	public static String msg_done="";
+
 	public static String about="";
+	public static String about_manual="";
+	public static String about_miWeb="";
+	public static String about_miEmail="";
+	public static String about_github="";
+	public static String about_actualizaciones="";
+	public static String about_bugs="";
 	
 	private static String idioma="ES";
 	
@@ -59,8 +66,15 @@ public class Mensaje {
 			msg_programaIniciado="WELCOME TO UUIDRENAMER !!!";
 			msg_finalizado="COPY FINISHED\n";
 			msg_done="DONE:\t";
-			about="";
 			
+			about="About";
+			about_manual="Manual";
+			about_miWeb="My Web";
+			about_miEmail="My e-Mail";
+			about_github="Github";
+			about_actualizaciones="Updates";
+			about_bugs="Report a bug";
+						
 			idioma="EN";
 		}
 		else if (idioma=="EN")
@@ -78,7 +92,14 @@ public class Mensaje {
 			msg_programaIniciado="BIENVENIDO A UUIDRENAMER";
 			msg_finalizado="COPIA FINALIZADA";
 			msg_done="HECHO:\t";
-			about="";
+			
+			about="Acerca de";
+			about_manual="Manual";
+			about_miWeb="Mi Web";
+			about_miEmail="Mi e-Mail";
+			about_github="Github";
+			about_actualizaciones="Actualizaciones";
+			about_bugs="Reportar error";
 			
 			idioma="ES";
 		}
