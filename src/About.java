@@ -48,7 +48,7 @@ public class About extends JDialog {
 		lbl_imagen.setBounds(10, 4, 64, 64);
 		contentPanel.add(lbl_imagen);
 		{
-			JLabel lblVersion = new JLabel("uuidRenamer 1.3-Beta");
+			JLabel lblVersion = new JLabel("uuidRenamer 1.4-Beta");
 			lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 23));
 			lblVersion.setBounds(89, 14, 230, 42);
 			contentPanel.add(lblVersion);
