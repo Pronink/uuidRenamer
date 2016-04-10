@@ -16,18 +16,21 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
-import javax.swing.text.DefaultCaret;
 import javax.swing.event.ChangeEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import javax.swing.JScrollPane;
 import java.awt.SystemColor;
+import java.awt.Cursor;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class Ventana {
 
@@ -48,15 +51,10 @@ public class Ventana {
 	private JRadioButton rdbtnEspaol;
 	
 	
-	
+	private JScrollPane scrollPane;
 	public static JTextArea log;
-	public static void refrescarLog()
-	{
-		Ventana.log.update(Ventana.log.getGraphics());
-		DefaultCaret caret = (DefaultCaret) log.getCaret();
-		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-	}
-	
+	private JButton button_abrirDestino;
+
 
 	/**
 	 * Launch the application.
@@ -108,48 +106,33 @@ public class Ventana {
 		lblRutaDeDestino.setBounds(10, 49, 113, 14);
 		frmUuidRenamer.getContentPane().add(lblRutaDeDestino);
 		
-// SELECCIONAR DESTINO
-		textoDestino = new JTextField();
-		textoDestino.setEditable(false);
-		textoDestino.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				btn1.requestFocus();
-			}
-		});
-		textoDestino.setBackground(SystemColor.text);
-		textoDestino.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-				eventoRuta2();
-			}
-		});
-		
 // SELECCIONAR ORIGEN
 		textoOrigen = new JTextField();
-		textoOrigen.setEditable(false);
 		textoOrigen.addFocusListener(new FocusAdapter() {
 			@Override
-			public void focusGained(FocusEvent e) {
-				btn1.requestFocus();
+			public void focusLost(FocusEvent arg0) {
+				textoOrigen.setText(Archivo.cambiarBarras(textoOrigen.getText()));
 			}
 		});
 		textoOrigen.setBackground(SystemColor.text);
-		textoOrigen.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-				eventoRuta1();
-			}
-		});
-		textoOrigen.setBounds(128, 21, 262, 20);
+		textoOrigen.setBounds(128, 21, 236, 20);
 		frmUuidRenamer.getContentPane().add(textoOrigen);
 		textoOrigen.setColumns(10);
-		textoDestino.setBounds(128, 46, 262, 20);
+		
+
+// SELECCIONAR DESTINO
+		textoDestino = new JTextField();
+		textoDestino.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				textoDestino.setText(Archivo.cambiarBarras(textoDestino.getText()));
+			}
+		});
+		textoDestino.setBackground(SystemColor.text);
+		textoDestino.setBounds(128, 46, 236, 20);
 		frmUuidRenamer.getContentPane().add(textoDestino);
 		textoDestino.setColumns(10);
-		
+
 // BOTON 1
 		btn1 = new JButton(mensaje.en_boton1texto);
 		btn1.addMouseListener(new MouseAdapter() {
@@ -208,21 +191,11 @@ public class Ventana {
 		frmUuidRenamer.getContentPane().add(btn_acercaDe);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 163, 389, 1);
+		separator_1.setBounds(10, 165, 389, 1);
 		frmUuidRenamer.getContentPane().add(separator_1);
 		
 				rdbtnEnglish = new JRadioButton("English");
-				rdbtnEnglish.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						btn1.requestFocus();
-					}
-				});
-				rdbtnEnglish.addFocusListener(new FocusAdapter() {
-					@Override
-					public void focusGained(FocusEvent arg0) {
-						btn_acercaDe.requestFocus();						// Saltar focus al comienzo
-					}
-				});
+				rdbtnEnglish.setFocusable(false);
 				rdbtnEnglish.addChangeListener(new ChangeListener() {	// Cambiar idioma
 					public void stateChanged(ChangeEvent arg0) {
 						cambiarIdioma();
@@ -230,17 +203,7 @@ public class Ventana {
 				});
 				
 				rdbtnEspaol = new JRadioButton("Espa\u00F1ol");
-				rdbtnEspaol.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						btn1.requestFocus();
-					}
-				});
-				rdbtnEspaol.addFocusListener(new FocusAdapter() {
-					@Override
-					public void focusGained(FocusEvent e) {
-						btn_acercaDe.requestFocus();						// Saltar focus al comienzo
-					}
-				});
+				rdbtnEspaol.setFocusable(false);
 				rdbtnEspaol.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				buttonGroup.add(rdbtnEspaol);
 				rdbtnEspaol.setBounds(139, 395, 67, 23);
@@ -253,7 +216,9 @@ public class Ventana {
 				rdbtnEnglish.setFocusPainted(false);
 				frmUuidRenamer.getContentPane().add(rdbtnEnglish);
 				
-				JScrollPane scrollPane = new JScrollPane();
+				scrollPane = new JScrollPane();
+				scrollPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				scrollPane.setAutoscrolls(true);
 				scrollPane.setBounds(10, 195, 389, 174);
 				frmUuidRenamer.getContentPane().add(scrollPane);
 				
@@ -269,6 +234,29 @@ public class Ventana {
 				JSeparator separator_2 = new JSeparator();
 				separator_2.setBounds(10, 387, 389, 1);
 				frmUuidRenamer.getContentPane().add(separator_2);
+				
+				JButton button_abrirOrigen = new JButton("");
+				Image imgAbrir1=new ImageIcon(this.getClass().getResource("/uuidRenamer/abrir.png")).getImage();
+				button_abrirOrigen.setIcon(new ImageIcon(imgAbrir1));
+				button_abrirOrigen.setFocusPainted(false);
+				button_abrirOrigen.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						eventoRuta1();
+					}
+				});
+				button_abrirOrigen.setBounds(374, 20, 25, 23);
+				frmUuidRenamer.getContentPane().add(button_abrirOrigen);
+				
+				button_abrirDestino = new JButton("");
+				button_abrirDestino.setIcon(new ImageIcon(imgAbrir1));
+				button_abrirDestino.setFocusPainted(false);
+				button_abrirDestino.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						eventoRuta2();
+					}
+				});
+				button_abrirDestino.setBounds(374, 45, 25, 23);
+				frmUuidRenamer.getContentPane().add(button_abrirDestino);
 
 				log.append(Mensaje.msg_programaIniciado+"\n\n");
 	}
@@ -276,17 +264,25 @@ public class Ventana {
 	// ACCIONES DE LOS EVENTOS
 	private void eventoRuta1()
 	{
-		textoOrigen.setText(Archivo.abrir());
+		String queAbrir=Archivo.abrir();
+		if (queAbrir!=null)
+		{
+			textoOrigen.setText(queAbrir);
+		}
 	}
 	
 	private void eventoRuta2()
 	{
-		textoDestino.setText(Archivo.abrir());
+		String queAbrir=Archivo.abrir();
+		if (queAbrir!=null)
+		{
+			textoDestino.setText(queAbrir);
+		}
 	}
 	
 	private void eventoBoton1()
 	{
-		Ventana.log.setText("");
+		Ventana.log.setText(Mensaje.msg_empezar+"\n");
 		boolean copiado=false;
 		if(Copiar.comprobarCampos(textoOrigen, textoDestino)) 								 // SI COMPRUEBA QUE LOS CAMPOS ESTAN BIEN...
 		{
@@ -299,18 +295,18 @@ public class Ventana {
 		if (copiado)																		 // Y MUESTRA SI SE PUDO REALIZAR O NO
 		{
 			Ventana.log.append(Mensaje.msg_finalizado);
-			JOptionPane.showConfirmDialog(null, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
 			Ventana.log.append(Mensaje.msg_noCopiado);
-			JOptionPane.showConfirmDialog(null, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	
 	private void eventoBoton2()
 	{
-		Ventana.log.setText("");
+		Ventana.log.setText(Mensaje.msg_empezar+"\n");
 		boolean copiado=false;
 		if(Copiar.comprobarCampos(textoOrigen, textoDestino)) 								 // SI COMPRUEBA QUE LOS CAMPOS ESTAN BIEN...
 		{
@@ -323,12 +319,12 @@ public class Ventana {
 		if (copiado)																		 // Y MUESTRA SI SE PUDO REALIZAR O NO
 		{
 			Ventana.log.append(Mensaje.msg_finalizado);
-			JOptionPane.showConfirmDialog(null, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
 			Ventana.log.append(Mensaje.msg_noCopiado);
-			JOptionPane.showConfirmDialog(null, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	
@@ -365,4 +361,10 @@ public class Ventana {
 		acerca.setLocationRelativeTo(btn_acercaDe);
 		acerca.setVisible(true);
 	}
+	
+	public static void refrescarLog()
+	{
+		Ventana.log.update(Ventana.log.getGraphics());
+	}
+	
 }

@@ -8,15 +8,15 @@ public class Mensaje {
 	public static String msg_boton2Desc="name.dat  >  UUID.dat";
 
 	// INTERFAZ (Son cargados una vez)
-	public String en_caja1texto="Source path";
-	public String en_caja2texto="Destination path";
+	public String en_caja1texto="Source path:";
+	public String en_caja2texto="Destination path:";
 	public String en_boton1texto="to no PREMIUM";
 	public String en_boton2texto="to PREMIUM";
 	public String en_idioma="Language:";
 	public String en_acercaDe="About";
 	
-	public String es_caja1texto="Ruta de origen";
-	public String es_caja2texto="Ruta de destino";
+	public String es_caja1texto="Ruta de origen:";
+	public String es_caja2texto="Ruta de destino:";
 	public String es_boton1texto="a no PREMIUM";
 	public String es_boton2texto="a PREMIUM";
 	public String es_idioma="Idioma:";
@@ -24,6 +24,7 @@ public class Mensaje {
 	
 
 	// MENSAJES (Tienen que cambiar)
+	public static String msg_empezar="";
 	public static String msg_avisoIguales="";
 	public static String msg_avisoCampoVacio="";
 	public static String msg_errorDirectorioVacio="";
@@ -53,6 +54,7 @@ public class Mensaje {
 	{
 		if (idioma=="ES")
 		{
+			msg_empezar="STARTING...";
 			msg_avisoIguales="The source path and destination are the same,\nthis can cause overwriting if there is any error\nContinue?";
 			msg_avisoCampoVacio="There are empty fields";
 			msg_errorDirectorioVacio="ERROR:\tThe source folder is empty";
@@ -79,6 +81,7 @@ public class Mensaje {
 		}
 		else if (idioma=="EN")
 		{
+			msg_empezar="EMPEZANDO...";
 			msg_avisoIguales="La ruta de origen y destino son iguales, esto puede ocasionar sobreescritura y\npérdida de información en caso de error.\n¿Continuar?";
 			msg_avisoCampoVacio="Hay uno o varios campos vacíos";
 			msg_errorDirectorioVacio="ERROR:\tUno o varios directorios especificados está vacío";

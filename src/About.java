@@ -20,6 +20,7 @@ import java.net.URISyntaxException;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 
 public class About extends JDialog {
 
@@ -31,6 +32,7 @@ public class About extends JDialog {
 	 */
 	public About(JFrame ventana, boolean modal) {
 		super(ventana,modal);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(About.class.getResource("/uuidRenamer/icon.png")));
 		setTitle(Mensaje.about);
 		setResizable(false);
 		
@@ -48,7 +50,7 @@ public class About extends JDialog {
 		lbl_imagen.setBounds(10, 4, 64, 64);
 		contentPanel.add(lbl_imagen);
 		{
-			JLabel lblVersion = new JLabel("uuidRenamer 1.4-Beta");
+			JLabel lblVersion = new JLabel("uuidRenamer 1.5-Beta");
 			lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 23));
 			lblVersion.setBounds(89, 14, 230, 42);
 			contentPanel.add(lblVersion);

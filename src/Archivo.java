@@ -127,18 +127,29 @@ public class Archivo {
 	{
 		JFileChooser llamadaAbrir = new JFileChooser();
 		llamadaAbrir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
 		llamadaAbrir.setDialogTitle(Mensaje.msg_seleccionarDirectorio);
 		if (llamadaAbrir.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 		{
-			return llamadaAbrir.getSelectedFile().getAbsolutePath().replace('\\', '/').concat("/");
+			return cambiarBarras(llamadaAbrir.getSelectedFile().getAbsolutePath());
 		}
 		else
 		{
-			return "";
+			return null;
 		}
 		
 	}
-	
+	public static String cambiarBarras(String textoRuta)
+	{
+		if (textoRuta.length()==0)
+		{
+			return "";
+		}
+		textoRuta=textoRuta.replace('\\', '/');
+		if (!textoRuta.endsWith("/"))
+		{
+			textoRuta=textoRuta.concat("/");
+		}
+		return textoRuta;
+	}
 	
 }

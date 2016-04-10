@@ -60,14 +60,14 @@ public class Copiar {
 		if (textoOrigen.getText().isEmpty() || textoDestino.getText().isEmpty())
 		{
 			System.out.println(Mensaje.msg_avisoCampoVacio);
-			JOptionPane.showConfirmDialog(null, Mensaje.msg_avisoCampoVacio, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_avisoCampoVacio, Mensaje.msg_nombreVentana, JOptionPane.PLAIN_MESSAGE);
 			todoCorrecto=false;
 		}
 		if (textoOrigen.getText().equals(textoDestino.getText()) && todoCorrecto==true)
 		{
 			System.out.println(Mensaje.msg_avisoIguales);
 			int sinoVentana=0;
-			sinoVentana=JOptionPane.showConfirmDialog(null, Mensaje.msg_avisoIguales, Mensaje.msg_nombreVentana, JOptionPane.YES_NO_OPTION);
+			sinoVentana=JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_avisoIguales, Mensaje.msg_nombreVentana, JOptionPane.YES_NO_OPTION);
 			if(sinoVentana==0)
 			{
 				todoCorrecto=true;
