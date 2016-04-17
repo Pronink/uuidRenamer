@@ -14,14 +14,14 @@ public class Mensaje {
 	public String en_boton2texto="to PREMIUM";
 	public String en_idioma="Language:";
 	public String en_acercaDe="About";
-	
+
 	public String es_caja1texto="Ruta de origen:";
 	public String es_caja2texto="Ruta de destino:";
 	public String es_boton1texto="a no PREMIUM";
 	public String es_boton2texto="a PREMIUM";
 	public String es_idioma="Idioma:";
 	public String es_acercaDe="Acerca de";
-	
+
 
 	// MENSAJES (Tienen que cambiar)
 	public static String msg_empezar="";
@@ -46,10 +46,10 @@ public class Mensaje {
 	public static String about_github="";
 	public static String about_actualizaciones="";
 	public static String about_bugs="";
-	
+
 	private static String idioma="ES";
-	
-	
+
+
 	public static void cambiarIdioma() // Se ejecuta en cuanto inicia la aplicacion
 	{
 		if (idioma=="ES")
@@ -68,7 +68,7 @@ public class Mensaje {
 			msg_programaIniciado="WELCOME TO UUIDRENAMER !!!";
 			msg_finalizado="COPY FINISHED\n";
 			msg_done="DONE:\t";
-			
+
 			about="About";
 			about_manual="Manual";
 			about_miWeb="My Web";
@@ -76,7 +76,7 @@ public class Mensaje {
 			about_github="Github";
 			about_actualizaciones="Updates";
 			about_bugs="Report a bug";
-						
+
 			idioma="EN";
 		}
 		else if (idioma=="EN")
@@ -95,7 +95,7 @@ public class Mensaje {
 			msg_programaIniciado="BIENVENIDO A UUIDRENAMER";
 			msg_finalizado="COPIA FINALIZADA";
 			msg_done="HECHO:\t";
-			
+
 			about="Acerca de";
 			about_manual="Manual";
 			about_miWeb="Mi Web";
@@ -103,7 +103,7 @@ public class Mensaje {
 			about_github="Github";
 			about_actualizaciones="Actualizaciones";
 			about_bugs="Reportar error";
-			
+
 			idioma="ES";
 		}
 	}

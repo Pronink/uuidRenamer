@@ -6,16 +6,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 import javax.swing.JFileChooser;
 
+// Manipulación de archivos, tales como lectura y copia, entre otros.
 public class Archivo {
 
-	
+	// Copia un archivo 'a' a un archivo 'b' destino inexistente o existente
+	// (sobreescribiéndolo)
 	public static void copiar(String rutaOrigen, String rutaDestino) {
-		
+
 		InputStream inStream = null;
 		OutputStream outStream = null;
-		
 
 		try {
 
@@ -28,128 +30,116 @@ public class Archivo {
 			byte[] buffer = new byte[1024];
 
 			int length;
-			
-			while ((length = inStream.read(buffer)) > 0)
-			{
+
+			while ((length = inStream.read(buffer)) > 0) {
 				outStream.write(buffer, 0, length);
 			}
 
 			inStream.close();
 			outStream.close();
 
-			Ventana.log.append(Mensaje.msg_done+origen.getName()+Mensaje.msg_copiado+destino.getName()+"\n");
+			Ventana.log.append(Mensaje.msg_done + origen.getName() + Mensaje.msg_copiado + destino.getName() + "\n");
 
-		}
-		catch (IOException e)
-		{
-			Ventana.log.append(Mensaje.msg_errorDirectorioNoExiste+"\n"); //Si esto no funciona hay que hacer
-			System.out.println(e);										  //revisión de errores de campo en el destino.
+		} catch (IOException e) {
+			Ventana.log.append(Mensaje.msg_errorDirectorioNoExiste + "\n");
+			System.out.println(e);
 		}
 	}
-	
-	// DEVOLVER ARRAY TIPO STRING DE RUTAS ABSOLUTAS DE FICHEROS .bat
-	public static String[] listarDirectorio(String ruta)
-	{
+
+	// Devuelve rutas absolutas de ficheros acabados en .bat de la ruta absoluta
+	// especificada
+	public static String[] listarDirectorio(String ruta) {
 
 		File carpeta = new File(ruta);
-		
-		if(carpeta.exists())
-		{
-			// LISTAR TODOS LOS ARCHIVOS Y CARPETAS Y METERLOS EN UN ARRAY
+
+		if (carpeta.exists()) {
+
+			// Listar todo lo que contiene la ruta de origen
 			File[] listaDeArchivos = carpeta.listFiles();
-			if(listaDeArchivos.length==0)
-			{
-				Ventana.log.append(Mensaje.msg_errorDirectorioVacio+"\n");
+
+			// Retorna NULL si no hay archivos dentro del directorio
+			if (listaDeArchivos.length == 0) {
+				Ventana.log.append(Mensaje.msg_errorDirectorioVacio + "\n");
 				return null;
 			}
-			
-			// CONTAR SOLO ARCHIVOS Y QUE ACABEN EN .dat
-			int numeroDeArchivos=0;
-			for (int i = 0; i < listaDeArchivos.length; i++)
-			{
-				if(listaDeArchivos[i].isFile() && listaDeArchivos[i].getName().contains(".dat"))
-				{
-				numeroDeArchivos++;
+
+			// Conteo de archivos .dat
+			int numeroDeDats = 0;
+			for (int i = 0; i < listaDeArchivos.length; i++) {
+				if (listaDeArchivos[i].isFile() && listaDeArchivos[i].getName().endsWith(".dat")) {
+					numeroDeDats++;
 				}
 			}
-			
-			// DETENER SI NO HAY .dat
-			if (numeroDeArchivos == 0)
-			{
-				Ventana.log.append(Mensaje.msg_errorNoExistenDats+"\n");
+
+			// Retorna NULL si no existen archivos .bat
+			if (numeroDeDats == 0) {
+				Ventana.log.append(Mensaje.msg_errorNoExistenDats + "\n");
 				return null;
 			}
-			
-			// RETORNAR .dat EN UN ARRAY DE TIPO STRING
-			String[] lista = new String[numeroDeArchivos];
-			int j=0;
-			for (int i = 0; i < listaDeArchivos.length; i++)
-			{
-				if(listaDeArchivos[i].isFile() && listaDeArchivos[i].getName().contains(".dat"))
-				{
-					lista[j]=listaDeArchivos[i].getPath().replace('\\','/');
+
+			// Introducir en un nuevo array las rutas de solo los archivos
+			// acabados en .dat
+			String[] lista = new String[numeroDeDats];
+			int j = 0;
+			for (int i = 0; i < listaDeArchivos.length; i++) {
+				if (listaDeArchivos[i].isFile() && listaDeArchivos[i].getName().endsWith(".dat")) {
+					lista[j] = listaDeArchivos[i].getPath().replace('\\', '/');
 					j++;
 				}
 			}
+
+			// Retorno correcto
 			return lista;
 		}
-		else
-		{
-			Ventana.log.append(Mensaje.msg_errorDirectorioNoExiste+"\n"); //Solo lo retorna cuando falla en el origen
+		// Retorna NULL si el directorio no existe
+		else {
+			Ventana.log.append(Mensaje.msg_errorDirectorioNoExiste + "\n");
 			return null;
 		}
 
 	}
 
-	// RETORNAR NOMBRE DE ARCHIVO .dat
-	public static String suNombre(String ruta)
-	{
+	// Retorna el nombre del archivo sin la extensión
+	public static String suNombre(String ruta) {
 		File rutaFile = new File(ruta);
-		if(rutaFile.getName().contains(".dat"))
-		{
-			return rutaFile.getName().substring(0,rutaFile.getName().indexOf(".dat"));
+		if (rutaFile.getName().contains(".dat")) {
+			return rutaFile.getName().substring(0, rutaFile.getName().indexOf(".dat"));
 		}
 		return null;
 	}
-	
-	public static String suNombreConExtension(String ruta)
-	{
+
+	// Retorna el nombre del archivo con la extensión
+	public static String suNombreConExtension(String ruta) {
 		File rutaFile = new File(ruta);
-		if(rutaFile.getName().contains(".dat"))
-		{
+		if (rutaFile.getName().contains(".dat")) {
 			return rutaFile.getName();
 		}
 		return null;
 	}
-	
-	
-	public static String abrir()
-	{
+
+	// Abre el diálogo de selección de directorio
+	public static String abrir() {
 		JFileChooser llamadaAbrir = new JFileChooser();
 		llamadaAbrir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		llamadaAbrir.setDialogTitle(Mensaje.msg_seleccionarDirectorio);
-		if (llamadaAbrir.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-		{
+		if (llamadaAbrir.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			return cambiarBarras(llamadaAbrir.getSelectedFile().getAbsolutePath());
-		}
-		else
-		{
+		} else {
 			return null;
 		}
-		
 	}
-	public static String cambiarBarras(String textoRuta)
-	{
-		if (textoRuta.length()==0)
-		{
+
+	// Devuelve el String de entrada por otro con las barras de ruta de archivo
+	// correctas. Sustituye '\' por '/' y coloca '/' al final si esta no existe
+	public static String cambiarBarras(String textoRuta) {
+		if (textoRuta.length() == 0) {
 			return "";
 		}
-		textoRuta=textoRuta.replace('\\', '/');
-		if (!textoRuta.endsWith("/"))
-		{
-			textoRuta=textoRuta.concat("/");
+		textoRuta = textoRuta.replace('\\', '/');
+		if (!textoRuta.endsWith("/")) {
+			textoRuta = textoRuta.concat("/");
 		}
 		return textoRuta;
 	}
-	
+
 }
