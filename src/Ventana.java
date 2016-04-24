@@ -78,7 +78,7 @@ public class Ventana {
 		}
 
 		frmUuidRenamer = new JFrame();
-		frmUuidRenamer.setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana.class.getResource("icon.png")));
+		frmUuidRenamer.setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana.class.getResource("img/icon.png")));
 		frmUuidRenamer.setTitle(Mensaje.msg_nombreVentana);
 		frmUuidRenamer.setResizable(false);
 		frmUuidRenamer.setBounds(100, 100, 415, 454);
@@ -121,7 +121,7 @@ public class Ventana {
 
 		// Botones que abren diálogo de abrir carpeta
 		JButton button_abrirOrigen = new JButton("");
-		button_abrirOrigen.setIcon(new ImageIcon(this.getClass().getResource("/uuidRenamer/abrir.png")));
+		button_abrirOrigen.setIcon(new ImageIcon(this.getClass().getResource("img/abrir.png")));
 		button_abrirOrigen.setFocusPainted(false);
 		button_abrirOrigen.addActionListener(new ActionListener() {
 			@Override
@@ -133,7 +133,7 @@ public class Ventana {
 		frmUuidRenamer.getContentPane().add(button_abrirOrigen);
 
 		button_abrirDestino = new JButton("");
-		button_abrirDestino.setIcon(new ImageIcon(this.getClass().getResource("/uuidRenamer/abrir.png")));
+		button_abrirDestino.setIcon(new ImageIcon(this.getClass().getResource("img/abrir.png")));
 		button_abrirDestino.setFocusPainted(false);
 		button_abrirDestino.addActionListener(new ActionListener() {
 			@Override
@@ -252,12 +252,12 @@ public class Ventana {
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setIcon(new ImageIcon(Ventana.class.getResource("/uuidRenamer/aNoPremium.png")));
+		lblNewLabel.setIcon(new ImageIcon(Ventana.class.getResource("img/aNoPremium.png")));
 		lblNewLabel.setBounds(56, 98, 25, 20);
 		frmUuidRenamer.getContentPane().add(lblNewLabel);
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Ventana.class.getResource("/uuidRenamer/aPremium.png")));
+		label.setIcon(new ImageIcon(Ventana.class.getResource("img/aPremium.png")));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setBounds(56, 129, 25, 20);
 		frmUuidRenamer.getContentPane().add(label);

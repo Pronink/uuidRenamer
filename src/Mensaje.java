@@ -3,10 +3,11 @@ package uuidRenamer;
 public class Mensaje {
 
 	// QUE NO CAMBIAN
+	public static String version = "uuidRenamer 1.7-Beta";
 	public static String msg_nombreVentana = "MC uuid Renamer";
 	public static String msg_boton1Desc = "UUID.dat  >  name.dat";
 	public static String msg_boton2Desc = "name.dat  >  UUID.dat";
-	public static String msg_programaIniciado = "WELCOME TO UUIDRENAMER !!!\n\n";
+	public static String msg_programaIniciado = "WELCOME TO UUIDRENAMER !!!\nBIENVENIDO A UUIDRENAMER !!!\n\n";
 
 	// INTERFAZ (Son cargados una vez)
 	public String en_caja1texto = "Source path:";
@@ -101,10 +102,4 @@ public class Mensaje {
 			idioma = "ES";
 		}
 	}
-
-	/*
-	 * private void cambiarBienvenida() {
-	 * 
-	 * }
-	 */
 }

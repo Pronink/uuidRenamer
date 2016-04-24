@@ -29,11 +29,11 @@ public class About extends JDialog {
 
 	public About(JFrame ventana, boolean modal) {
 		super(ventana, modal);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(About.class.getResource("/uuidRenamer/icon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(About.class.getResource("img/icon.png")));
 		setTitle(Mensaje.about);
 		setResizable(false);
 
-		Image github = new ImageIcon(this.getClass().getResource("/uuidRenamer/github.png")).getImage();
+		Image github = new ImageIcon(this.getClass().getResource("img/github.png")).getImage();
 
 		setBounds(100, 100, 354, 216);
 		getContentPane().setLayout(new BorderLayout());
@@ -42,11 +42,11 @@ public class About extends JDialog {
 		contentPanel.setLayout(null);
 
 		JLabel lbl_imagen = new JLabel("");
-		lbl_imagen.setIcon(new ImageIcon(this.getClass().getResource("icon.png")));
+		lbl_imagen.setIcon(new ImageIcon(this.getClass().getResource("img/icon.png")));
 		lbl_imagen.setBounds(10, 4, 64, 64);
 		contentPanel.add(lbl_imagen);
 		{
-			JLabel lblVersion = new JLabel("uuidRenamer 1.6-Beta");
+			JLabel lblVersion = new JLabel(Mensaje.version);
 			lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 23));
 			lblVersion.setBounds(89, 14, 230, 42);
 			contentPanel.add(lblVersion);
@@ -54,7 +54,7 @@ public class About extends JDialog {
 
 		JButton btnMyWeb = new JButton(Mensaje.about_miWeb);
 		btnMyWeb.setEnabled(false);
-		btnMyWeb.setIcon(new ImageIcon(this.getClass().getResource("/uuidRenamer/web.png")));
+		btnMyWeb.setIcon(new ImageIcon(this.getClass().getResource("img/web.png")));
 		btnMyWeb.setMargin(new Insets(0, 0, 0, 16 + 1));
 		btnMyWeb.addActionListener(new ActionListener() {
 			@Override
@@ -67,7 +67,7 @@ public class About extends JDialog {
 		contentPanel.add(btnMyWeb);
 
 		JButton btnManual = new JButton(Mensaje.about_manual);
-		btnManual.setIcon(new ImageIcon(this.getClass().getResource("/uuidRenamer/manual.png")));
+		btnManual.setIcon(new ImageIcon(this.getClass().getResource("img/manual.png")));
 		btnManual.setMargin(new Insets(0, 0, 0, 16 + 1));// Pone margen a la
 															// derecha de 16
 															// para centrar el
@@ -122,7 +122,7 @@ public class About extends JDialog {
 		contentPanel.add(btnGithub);
 
 		JButton btnMail = new JButton(Mensaje.about_miEmail);
-		btnMail.setIcon(new ImageIcon(this.getClass().getResource("/uuidRenamer/email.png")));
+		btnMail.setIcon(new ImageIcon(this.getClass().getResource("img/email.png")));
 		btnMail.setMargin(new Insets(0, 0, 0, 16 + 1));
 		btnMail.addActionListener(new ActionListener() {
 			@Override
