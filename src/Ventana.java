@@ -161,7 +161,7 @@ public class Ventana {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 81, 389, 1);
 		frmUuidRenamer.getContentPane().add(separator);
-		btn1.setBounds(78, 98, 113, 23);
+		btn1.setBounds(95, 93, 113, 30);
 		btn1.setFocusPainted(false); // Quedaba muy feo
 		frmUuidRenamer.getContentPane().add(btn1);
 
@@ -173,16 +173,16 @@ public class Ventana {
 				eventoBoton2();
 			}
 		});
-		btn2.setBounds(78, 129, 113, 23);
+		btn2.setBounds(95, 125, 113, 30);
 		btn2.setFocusPainted(false);
 		frmUuidRenamer.getContentPane().add(btn2);
 
 		JLabel lblDesc1 = new JLabel(Mensaje.msg_boton1Desc);
-		lblDesc1.setBounds(211, 102, 168, 14);
+		lblDesc1.setBounds(218, 102, 168, 14);
 		frmUuidRenamer.getContentPane().add(lblDesc1);
 
 		JLabel lblDesc2 = new JLabel(Mensaje.msg_boton2Desc);
-		lblDesc2.setBounds(211, 133, 168, 14);
+		lblDesc2.setBounds(218, 133, 168, 14);
 		frmUuidRenamer.getContentPane().add(lblDesc2);
 
 		lblIdioma = new JLabel(mensaje.en_idioma);
@@ -250,7 +250,19 @@ public class Ventana {
 		separator_2.setBounds(10, 387, 389, 1);
 		frmUuidRenamer.getContentPane().add(separator_2);
 
-		log.append(Mensaje.msg_programaIniciado + "\n\n");
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setIcon(new ImageIcon(Ventana.class.getResource("/uuidRenamer/aNoPremium.png")));
+		lblNewLabel.setBounds(56, 98, 25, 20);
+		frmUuidRenamer.getContentPane().add(lblNewLabel);
+
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(Ventana.class.getResource("/uuidRenamer/aPremium.png")));
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setBounds(56, 129, 25, 20);
+		frmUuidRenamer.getContentPane().add(label);
+
+		log.append(Mensaje.msg_programaIniciado);
 	}
 
 	// Acciones de los eventos
@@ -369,5 +381,4 @@ public class Ventana {
 	public static void refrescarLog() {
 		Ventana.log.update(Ventana.log.getGraphics());
 	}
-
 }

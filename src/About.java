@@ -53,6 +53,7 @@ public class About extends JDialog {
 		}
 
 		JButton btnMyWeb = new JButton(Mensaje.about_miWeb);
+		btnMyWeb.setEnabled(false);
 		btnMyWeb.setIcon(new ImageIcon(this.getClass().getResource("/uuidRenamer/web.png")));
 		btnMyWeb.setMargin(new Insets(0, 0, 0, 16 + 1));
 		btnMyWeb.addActionListener(new ActionListener() {
