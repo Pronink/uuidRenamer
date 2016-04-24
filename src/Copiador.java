@@ -1,7 +1,7 @@
 package uuidRenamer;
 
 // Esta clase interactúa con las clases 'Archivo' y 'ConversorWeb' para llevar a cabo el propósito final de la aplicación.
-public class Copiar {
+public class Copiador {
 
 	// Copia masiva de ficheros de formato UUID en Player
 	public static boolean toNoPremium(String rutaOrigen, String rutaDestino) throws Exception {
@@ -12,14 +12,14 @@ public class Copiar {
 				// Se obtiene el 'convertido' de cada 'archivoOrigen'
 				convertido = ConversorWeb.toName(Archivo.suNombre(archivoOrigen[i]));
 				if (convertido == null) {
-					Ventana.log.append(Mensaje.msg_errorNoRespuesta1 + Archivo.suNombreConExtension(archivoOrigen[i])
+					VentanaMain.log.append(Mensaje.msg_errorNoRespuesta1 + Archivo.suNombreConExtension(archivoOrigen[i])
 							+ Mensaje.msg_errorNoRespuesta2 + "\n");
-					Ventana.refrescarLog();
+					VentanaMain.refrescarLog();
 				}
 				// Acción final para cada archivo
 				else {
 					Archivo.copiar(archivoOrigen[i], rutaDestino + convertido + ".dat");
-					Ventana.refrescarLog();
+					VentanaMain.refrescarLog();
 				}
 			}
 			return true;
@@ -36,14 +36,14 @@ public class Copiar {
 				// Se obtiene el 'convertido' de cada 'archivoOrigen'
 				convertido = ConversorWeb.toUuid(Archivo.suNombre(archivoOrigen[i]));
 				if (convertido == null) {
-					Ventana.log.append(Mensaje.msg_errorNoRespuesta1 + Archivo.suNombreConExtension(archivoOrigen[i])
+					VentanaMain.log.append(Mensaje.msg_errorNoRespuesta1 + Archivo.suNombreConExtension(archivoOrigen[i])
 							+ Mensaje.msg_errorNoRespuesta2 + "\n");
-					Ventana.refrescarLog();
+					VentanaMain.refrescarLog();
 				}
 				// Acción final para cada archivo
 				else {
 					Archivo.copiar(archivoOrigen[i], rutaDestino + convertido + ".dat");
-					Ventana.refrescarLog();
+					VentanaMain.refrescarLog();
 				}
 			}
 			return true;

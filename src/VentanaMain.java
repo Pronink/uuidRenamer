@@ -28,7 +28,7 @@ import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class Ventana {
+public class VentanaMain {
 
 	private JFrame frmUuidRenamer;
 	private JTextField textoOrigen;
@@ -55,7 +55,7 @@ public class Ventana {
 			@Override
 			public void run() {
 				try {
-					Ventana window = new Ventana();
+					VentanaMain window = new VentanaMain();
 					window.frmUuidRenamer.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +64,7 @@ public class Ventana {
 		});
 	}
 
-	public Ventana() {
+	public VentanaMain() {
 		initialize();
 	}
 
@@ -78,7 +78,8 @@ public class Ventana {
 		}
 
 		frmUuidRenamer = new JFrame();
-		frmUuidRenamer.setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana.class.getResource("img/icon.png")));
+		frmUuidRenamer
+				.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaMain.class.getResource("img/icon.png")));
 		frmUuidRenamer.setTitle(Mensaje.msg_nombreVentana);
 		frmUuidRenamer.setResizable(false);
 		frmUuidRenamer.setBounds(100, 100, 415, 454);
@@ -252,12 +253,12 @@ public class Ventana {
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setIcon(new ImageIcon(Ventana.class.getResource("img/aNoPremium.png")));
+		lblNewLabel.setIcon(new ImageIcon(VentanaMain.class.getResource("img/aNoPremium.png")));
 		lblNewLabel.setBounds(56, 98, 25, 20);
 		frmUuidRenamer.getContentPane().add(lblNewLabel);
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Ventana.class.getResource("img/aPremium.png")));
+		label.setIcon(new ImageIcon(VentanaMain.class.getResource("img/aPremium.png")));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setBounds(56, 129, 25, 20);
 		frmUuidRenamer.getContentPane().add(label);
@@ -268,14 +269,14 @@ public class Ventana {
 	// Acciones de los eventos
 
 	private void eventoRuta1() {
-		String queAbrir = Archivo.abrir();
+		String queAbrir = Archivo.dialogoAbrir();
 		if (queAbrir != null) {
 			textoOrigen.setText(queAbrir);
 		}
 	}
 
 	private void eventoRuta2() {
-		String queAbrir = Archivo.abrir();
+		String queAbrir = Archivo.dialogoAbrir();
 		if (queAbrir != null) {
 			textoDestino.setText(queAbrir);
 		}
@@ -284,43 +285,43 @@ public class Ventana {
 	// EventoBoton 1 y 2 comprueban los campos y inician cada uno su método de
 	// la clase 'Copiar'
 	private void eventoBoton1() {
-		Ventana.log.setText(Mensaje.msg_empezar + "\n");
+		VentanaMain.log.setText(Mensaje.msg_empezar + "\n");
 		boolean copiado = false;
 		if (comprobarCampos(textoOrigen, textoDestino)) {
 			try {
-				copiado = Copiar.toNoPremium(textoOrigen.getText(), textoDestino.getText());
+				copiado = Copiador.toNoPremium(textoOrigen.getText(), textoDestino.getText());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		if (copiado) {
-			Ventana.log.append(Mensaje.msg_finalizado);
-			JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana,
+			VentanaMain.log.append(Mensaje.msg_finalizado);
+			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana,
 					JOptionPane.PLAIN_MESSAGE);
 		} else {
-			Ventana.log.append(Mensaje.msg_noCopiado);
-			JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana,
+			VentanaMain.log.append(Mensaje.msg_noCopiado);
+			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana,
 					JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 
 	private void eventoBoton2() {
-		Ventana.log.setText(Mensaje.msg_empezar + "\n");
+		VentanaMain.log.setText(Mensaje.msg_empezar + "\n");
 		boolean copiado = false;
 		if (comprobarCampos(textoOrigen, textoDestino)) {
 			try {
-				copiado = Copiar.toPremium(textoOrigen.getText(), textoDestino.getText());
+				copiado = Copiador.toPremium(textoOrigen.getText(), textoDestino.getText());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		if (copiado) {
-			Ventana.log.append(Mensaje.msg_finalizado);
-			JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana,
+			VentanaMain.log.append(Mensaje.msg_finalizado);
+			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana,
 					JOptionPane.PLAIN_MESSAGE);
 		} else {
-			Ventana.log.append(Mensaje.msg_noCopiado);
-			JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana,
+			VentanaMain.log.append(Mensaje.msg_noCopiado);
+			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana,
 					JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -330,14 +331,14 @@ public class Ventana {
 		boolean todoCorrecto = true;
 		if (textoOrigen.getText().isEmpty() || textoDestino.getText().isEmpty()) {
 			System.out.println(Mensaje.msg_avisoCampoVacio);
-			JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_avisoCampoVacio, Mensaje.msg_nombreVentana,
+			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_avisoCampoVacio, Mensaje.msg_nombreVentana,
 					JOptionPane.PLAIN_MESSAGE);
 			todoCorrecto = false;
 		}
 		if (textoOrigen.getText().equals(textoDestino.getText()) && todoCorrecto == true) {
 			System.out.println(Mensaje.msg_avisoIguales);
 			int sinoVentana = 0;
-			sinoVentana = JOptionPane.showConfirmDialog(Ventana.log, Mensaje.msg_avisoIguales,
+			sinoVentana = JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_avisoIguales,
 					Mensaje.msg_nombreVentana, JOptionPane.YES_NO_OPTION);
 			if (sinoVentana == 0) {
 				todoCorrecto = true;
@@ -373,12 +374,12 @@ public class Ventana {
 	}
 
 	private void abrirVentanaAbout() {
-		About acerca = new About(this.frmUuidRenamer, true);
+		VentanaAbout acerca = new VentanaAbout(this.frmUuidRenamer, true);
 		acerca.setLocationRelativeTo(btn_acercaDe);
 		acerca.setVisible(true);
 	}
 
 	public static void refrescarLog() {
-		Ventana.log.update(Ventana.log.getGraphics());
+		VentanaMain.log.update(VentanaMain.log.getGraphics());
 	}
 }

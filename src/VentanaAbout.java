@@ -22,14 +22,14 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class About extends JDialog {
+public class VentanaAbout extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
-	public About(JFrame ventana, boolean modal) {
+	public VentanaAbout(JFrame ventana, boolean modal) {
 		super(ventana, modal);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(About.class.getResource("img/icon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaAbout.class.getResource("img/icon.png")));
 		setTitle(Mensaje.about);
 		setResizable(false);
 
@@ -68,10 +68,8 @@ public class About extends JDialog {
 
 		JButton btnManual = new JButton(Mensaje.about_manual);
 		btnManual.setIcon(new ImageIcon(this.getClass().getResource("img/manual.png")));
-		btnManual.setMargin(new Insets(0, 0, 0, 16 + 1));// Pone margen a la
-															// derecha de 16
-															// para centrar el
-															// texto bien
+		btnManual.setMargin(new Insets(0, 0, 0, 16 + 1));
+		// Pone margen a la derecha de 16 para centrar el texto bien
 		btnManual.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -142,6 +140,7 @@ public class About extends JDialog {
 
 	// Acciones de los eventos
 
+	// Abre en el navegador el parámetro 'enlace'
 	private void abrirWeb(String enlace) {
 		if (Desktop.isDesktopSupported()) {
 			try {
@@ -153,6 +152,8 @@ public class About extends JDialog {
 		}
 	}
 
+	// Abre el programa predeterminado de emails con destinatario el parámetro
+	// 'eMail'
 	private void enviarMail(String eMail) {
 		if (Desktop.isDesktopSupported()) {
 			try {

@@ -6,8 +6,9 @@ Program to rename massively player's .dat files for Minecraft servers
 * Easy to use, with graphical interface
 * Working on Windows and Linux (Oracle Java 8)
 
+### Download
+* Download uuidRenamer from [here](https://github.com/Pronink/uuidRenamer/releases)
+* If you haven't Java 8, you can download from [here](https://www.java.com/es/download/) (32 bits) or [here](https://www.java.com/es/download/manual.jsp) (64 bits)
+
 ### Manual
 * Coming soon
-
-### Download
-* Download from [here](https://github.com/Pronink/uuidRenamer/releases)

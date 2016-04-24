@@ -38,10 +38,10 @@ public class Archivo {
 			inStream.close();
 			outStream.close();
 
-			Ventana.log.append(Mensaje.msg_done + origen.getName() + Mensaje.msg_copiado + destino.getName() + "\n");
+			VentanaMain.log.append(Mensaje.msg_done + origen.getName() + Mensaje.msg_copiado + destino.getName() + "\n");
 
 		} catch (IOException e) {
-			Ventana.log.append(Mensaje.msg_errorDirectorioNoExiste + "\n");
+			VentanaMain.log.append(Mensaje.msg_errorDirectorioNoExiste + "\n");
 			System.out.println(e);
 		}
 	}
@@ -59,7 +59,7 @@ public class Archivo {
 
 			// Retorna NULL si no hay archivos dentro del directorio
 			if (listaDeArchivos.length == 0) {
-				Ventana.log.append(Mensaje.msg_errorDirectorioVacio + "\n");
+				VentanaMain.log.append(Mensaje.msg_errorDirectorioVacio + "\n");
 				return null;
 			}
 
@@ -73,7 +73,7 @@ public class Archivo {
 
 			// Retorna NULL si no existen archivos .bat
 			if (numeroDeDats == 0) {
-				Ventana.log.append(Mensaje.msg_errorNoExistenDats + "\n");
+				VentanaMain.log.append(Mensaje.msg_errorNoExistenDats + "\n");
 				return null;
 			}
 
@@ -93,7 +93,7 @@ public class Archivo {
 		}
 		// Retorna NULL si el directorio no existe
 		else {
-			Ventana.log.append(Mensaje.msg_errorDirectorioNoExiste + "\n");
+			VentanaMain.log.append(Mensaje.msg_errorDirectorioNoExiste + "\n");
 			return null;
 		}
 
@@ -118,7 +118,7 @@ public class Archivo {
 	}
 
 	// Abre el diálogo de selección de directorio
-	public static String abrir() {
+	public static String dialogoAbrir() {
 		JFileChooser llamadaAbrir = new JFileChooser();
 		llamadaAbrir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		llamadaAbrir.setDialogTitle(Mensaje.msg_seleccionarDirectorio);
