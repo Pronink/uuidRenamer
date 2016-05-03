@@ -38,7 +38,8 @@ public class Archivo {
 			inStream.close();
 			outStream.close();
 
-			VentanaMain.log.append(Mensaje.msg_done + origen.getName() + Mensaje.msg_copiado + destino.getName() + "\n");
+			VentanaMain.log
+					.append(Mensaje.msg_done + origen.getName() + Mensaje.msg_copiado + destino.getName() + "\n");
 
 		} catch (IOException e) {
 			VentanaMain.log.append(Mensaje.msg_errorDirectorioNoExiste + "\n");
@@ -117,12 +118,17 @@ public class Archivo {
 		return null;
 	}
 
+	// Guardo la última ruta abierta desde la ventana de selección de direcorio
+	private static File ultimoDirectorio = new File("");;
+
 	// Abre el diálogo de selección de directorio
 	public static String dialogoAbrir() {
 		JFileChooser llamadaAbrir = new JFileChooser();
 		llamadaAbrir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		llamadaAbrir.setDialogTitle(Mensaje.msg_seleccionarDirectorio);
+		llamadaAbrir.setCurrentDirectory(ultimoDirectorio);
 		if (llamadaAbrir.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			ultimoDirectorio = llamadaAbrir.getSelectedFile().getParentFile();
 			return cambiarBarras(llamadaAbrir.getSelectedFile().getAbsolutePath());
 		} else {
 			return null;

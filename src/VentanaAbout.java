@@ -43,12 +43,13 @@ public class VentanaAbout extends JDialog {
 
 		JLabel lbl_imagen = new JLabel("");
 		lbl_imagen.setIcon(new ImageIcon(this.getClass().getResource("img/icon.png")));
-		lbl_imagen.setBounds(10, 4, 64, 64);
+		lbl_imagen.setBounds(20, 4, 64, 64);
 		contentPanel.add(lbl_imagen);
 		{
 			JLabel lblVersion = new JLabel(Mensaje.version);
+			lblVersion.setHorizontalAlignment(SwingConstants.CENTER);
 			lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 23));
-			lblVersion.setBounds(89, 14, 230, 42);
+			lblVersion.setBounds(94, 14, 243, 50);
 			contentPanel.add(lblVersion);
 		}
 
@@ -59,7 +60,7 @@ public class VentanaAbout extends JDialog {
 		btnMyWeb.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				abrirWeb("http://pronink.noip.me/");
+				abrirWeb("COMING SOON");
 			}
 		});
 		btnMyWeb.setBounds(10, 113, 147, 23);
