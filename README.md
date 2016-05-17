@@ -4,7 +4,10 @@ Program to rename massively player's .dat files for Minecraft servers
 
 * When you change your Minecraft server mode: Premium to No Premium or vice versa, the name of the saved files player switches to another format. This program automatically rename all of these files from one format to another.
 * Easy to use, with graphical interface
-* Working on Windows and Linux (Oracle Java 8)
+* Works on Windows and Linux (Oracle Java 8)
+
+### Screenshot
+![Screenshot](https://raw.githubusercontent.com/Pronink/uuidRenamer/master/screenshot.png)
 
 ### Download
 * Download uuidRenamer from [here](https://github.com/Pronink/uuidRenamer/releases)
