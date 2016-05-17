@@ -35,7 +35,7 @@ public class VentanaAbout extends JDialog {
 
 		Image github = new ImageIcon(this.getClass().getResource("img/github.png")).getImage();
 
-		setBounds(100, 100, 354, 216);
+		setBounds(100, 100, 354, 267);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -48,8 +48,8 @@ public class VentanaAbout extends JDialog {
 		{
 			JLabel lblVersion = new JLabel(Mensaje.version);
 			lblVersion.setHorizontalAlignment(SwingConstants.CENTER);
-			lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 23));
-			lblVersion.setBounds(94, 14, 243, 50);
+			lblVersion.setFont(new Font("Tahoma", Font.BOLD, 21));
+			lblVersion.setBounds(94, 14, 243, 28);
 			contentPanel.add(lblVersion);
 		}
 
@@ -137,6 +137,23 @@ public class VentanaAbout extends JDialog {
 		separator.setOrientation(SwingConstants.VERTICAL);
 		separator.setBounds(173, 67, 1, 107);
 		contentPanel.add(separator);
+
+		JLabel lblCreador = new JLabel(Mensaje.about_autor);
+		lblCreador.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblCreador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCreador.setBounds(94, 40, 243, 23);
+		contentPanel.add(lblCreador);
+
+		JLabel lblColaboradores = new JLabel(Mensaje.about_colaboradores);
+		lblColaboradores.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblColaboradores.setBounds(10, 191, 327, 16);
+		contentPanel.add(lblColaboradores);
+
+		JLabel lblTriozer = new JLabel(
+				">   " + Mensaje.about_idioma_traduccion + Mensaje.about_idioma_frances + Mensaje.about_by + "Triozer");
+		lblTriozer.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblTriozer.setBounds(10, 204, 327, 23);
+		contentPanel.add(lblTriozer);
 	}
 
 	// Acciones de los eventos
@@ -147,7 +164,6 @@ public class VentanaAbout extends JDialog {
 			try {
 				Desktop.getDesktop().browse(new URI(enlace));
 			} catch (IOException | URISyntaxException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

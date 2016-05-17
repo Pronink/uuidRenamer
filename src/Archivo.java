@@ -125,7 +125,7 @@ public class Archivo {
 	public static String dialogoAbrir() {
 		JFileChooser llamadaAbrir = new JFileChooser();
 		llamadaAbrir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		llamadaAbrir.setDialogTitle(Mensaje.msg_seleccionarDirectorio);
+		llamadaAbrir.setDialogTitle(Mensaje.title_seleccionarDirectorio);
 		llamadaAbrir.setCurrentDirectory(ultimoDirectorio);
 		if (llamadaAbrir.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			ultimoDirectorio = llamadaAbrir.getSelectedFile().getParentFile();

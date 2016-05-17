@@ -1,5 +1,6 @@
 package uuidRenamer;
 
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
@@ -10,33 +11,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 public class VentanaMain {
 
+	public static JTextArea log;
+	public static String idioma = "EN";
 	private JFrame frmUuidRenamer;
 	private JTextField textoOrigen;
 	private JTextField textoDestino;
 	private Mensaje mensaje = new Mensaje();
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-
 	private JLabel lblRutaDeOrigen;
 	private JLabel lblRutaDeDestino;
 	private JButton btn1;
@@ -44,12 +43,10 @@ public class VentanaMain {
 	private JLabel lblIdioma;
 	private JButton btn_acercaDe;
 
-	private JRadioButton rdbtnEnglish;
-	private JRadioButton rdbtnEspaol;
-
 	private JScrollPane scrollPane;
-	public static JTextArea log;
+
 	private JButton button_abrirDestino;
+	private Choice selectorIdioma;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -81,7 +78,7 @@ public class VentanaMain {
 		frmUuidRenamer = new JFrame();
 		frmUuidRenamer
 				.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaMain.class.getResource("img/icon.png")));
-		frmUuidRenamer.setTitle(Mensaje.msg_nombreVentana);
+		frmUuidRenamer.setTitle(Mensaje.title_nombreVentana);
 		frmUuidRenamer.setResizable(false);
 		frmUuidRenamer.setBounds(100, 100, 415, 454);
 		frmUuidRenamer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -200,37 +197,13 @@ public class VentanaMain {
 				abrirVentanaAbout();
 			}
 		});
-		btn_acercaDe.setBounds(310, 395, 89, 23);
+		btn_acercaDe.setBounds(298, 395, 101, 23);
 		btn_acercaDe.setFocusPainted(false);
 		frmUuidRenamer.getContentPane().add(btn_acercaDe);
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 165, 389, 1);
 		frmUuidRenamer.getContentPane().add(separator_1);
-
-		// Cambio de idioma
-		rdbtnEnglish = new JRadioButton("English");
-		rdbtnEnglish.setFocusable(false);
-		rdbtnEnglish.addChangeListener(new ChangeListener() { // Cambiar idioma
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-				cambiarIdioma();
-			}
-		});
-
-		rdbtnEspaol = new JRadioButton("Espa\u00F1ol");
-		rdbtnEspaol.setFocusable(false);
-		rdbtnEspaol.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		buttonGroup.add(rdbtnEspaol);
-		rdbtnEspaol.setBounds(139, 395, 67, 23);
-		rdbtnEspaol.setFocusPainted(false);
-		frmUuidRenamer.getContentPane().add(rdbtnEspaol);
-		rdbtnEnglish.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		rdbtnEnglish.setSelected(true);
-		buttonGroup.add(rdbtnEnglish);
-		rdbtnEnglish.setBounds(78, 395, 60, 23);
-		rdbtnEnglish.setFocusPainted(false);
-		frmUuidRenamer.getContentPane().add(rdbtnEnglish);
 
 		// Log
 		scrollPane = new JScrollPane();
@@ -267,7 +240,21 @@ public class VentanaMain {
 		label.setBounds(58, 129, 25, 20);
 		frmUuidRenamer.getContentPane().add(label);
 
+		selectorIdioma = new Choice();
+		selectorIdioma.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				cambiarIdioma();
+			}
+		});
+		selectorIdioma.add("English");
+		selectorIdioma.add("Español");
+		selectorIdioma.add("Français");
+		selectorIdioma.setBounds(79, 396, 84, 20);
+		frmUuidRenamer.getContentPane().add(selectorIdioma);
+
 		log.append(Mensaje.msg_programaIniciado);
+		cambiarIdioma();
 	}
 
 	// Acciones de los eventos
@@ -300,11 +287,11 @@ public class VentanaMain {
 		}
 		if (copiado) {
 			VentanaMain.log.append(Mensaje.msg_finalizado);
-			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana,
+			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_finalizado, Mensaje.title_nombreVentana,
 					JOptionPane.PLAIN_MESSAGE);
 		} else {
 			VentanaMain.log.append(Mensaje.msg_noCopiado);
-			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana,
+			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_noCopiado, Mensaje.title_nombreVentana,
 					JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -321,11 +308,11 @@ public class VentanaMain {
 		}
 		if (copiado) {
 			VentanaMain.log.append(Mensaje.msg_finalizado);
-			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_finalizado, Mensaje.msg_nombreVentana,
+			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_finalizado, Mensaje.title_nombreVentana,
 					JOptionPane.PLAIN_MESSAGE);
 		} else {
 			VentanaMain.log.append(Mensaje.msg_noCopiado);
-			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_noCopiado, Mensaje.msg_nombreVentana,
+			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_noCopiado, Mensaje.title_nombreVentana,
 					JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -335,7 +322,7 @@ public class VentanaMain {
 		boolean todoCorrecto = true;
 		if (textoOrigen.getText().isEmpty() || textoDestino.getText().isEmpty()) {
 			System.out.println(Mensaje.msg_avisoCampoVacio);
-			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_avisoCampoVacio, Mensaje.msg_nombreVentana,
+			JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_avisoCampoVacio, Mensaje.title_nombreVentana,
 					JOptionPane.PLAIN_MESSAGE);
 			todoCorrecto = false;
 		}
@@ -343,7 +330,7 @@ public class VentanaMain {
 			System.out.println(Mensaje.msg_avisoIguales);
 			int sinoVentana = 0;
 			sinoVentana = JOptionPane.showConfirmDialog(VentanaMain.log, Mensaje.msg_avisoIguales,
-					Mensaje.msg_nombreVentana, JOptionPane.YES_NO_OPTION);
+					Mensaje.title_nombreVentana, JOptionPane.YES_NO_OPTION);
 			if (sinoVentana == 0) {
 				todoCorrecto = true;
 			} else {
@@ -355,26 +342,47 @@ public class VentanaMain {
 
 	private void cambiarIdioma() {
 		Mensaje mensaje = new Mensaje();
-		if (rdbtnEnglish.isSelected()) {
-			lblRutaDeOrigen.setText(mensaje.en_caja1texto);
-			lblRutaDeDestino.setText(mensaje.en_caja2texto);
-			btn1.setText(mensaje.en_boton1texto);
-			btn2.setText(mensaje.en_boton2texto);
-			lblIdioma.setText(mensaje.en_idioma);
-			btn_acercaDe.setText(mensaje.en_acercaDe);
+		try {
+			String idiomaSel = selectorIdioma.getSelectedItem();
 
-			Mensaje.cambiarIdioma();
-		} else {
-			lblRutaDeOrigen.setText(mensaje.es_caja1texto);
-			lblRutaDeDestino.setText(mensaje.es_caja2texto);
-			btn1.setText(mensaje.es_boton1texto);
-			btn2.setText(mensaje.es_boton2texto);
-			lblIdioma.setText(mensaje.es_idioma);
-			btn_acercaDe.setText(mensaje.es_acercaDe);
+			if (idiomaSel.equals("English")) {
+				lblRutaDeOrigen.setText(mensaje.en_caja1texto);
+				lblRutaDeDestino.setText(mensaje.en_caja2texto);
+				btn1.setText(mensaje.en_boton1texto);
+				btn2.setText(mensaje.en_boton2texto);
+				lblIdioma.setText(mensaje.en_idioma);
+				btn_acercaDe.setText(mensaje.en_acercaDe);
 
-			Mensaje.cambiarIdioma();
+				idioma = "EN";
+
+				Mensaje.cambiarIdioma();
+			} else if (idiomaSel.equals("Español")) {
+				lblRutaDeOrigen.setText(mensaje.es_caja1texto);
+				lblRutaDeDestino.setText(mensaje.es_caja2texto);
+				btn1.setText(mensaje.es_boton1texto);
+				btn2.setText(mensaje.es_boton2texto);
+				lblIdioma.setText(mensaje.es_idioma);
+				btn_acercaDe.setText(mensaje.es_acercaDe);
+
+				idioma = "ES";
+
+				Mensaje.cambiarIdioma();
+			} else if (idiomaSel.equals("Français")) {
+				lblRutaDeOrigen.setText(mensaje.fr_caja1texto);
+				lblRutaDeDestino.setText(mensaje.fr_caja2texto);
+				btn1.setText(mensaje.fr_boton1texto);
+				btn2.setText(mensaje.fr_boton2texto);
+				lblIdioma.setText(mensaje.fr_idioma);
+				btn_acercaDe.setText(mensaje.fr_acercaDe);
+
+				Mensaje.cambiarIdioma();
+
+				idioma = "FR";
+
+				Mensaje.cambiarIdioma();
+			}
+		} catch (Exception e) {
 		}
-
 	}
 
 	private void abrirVentanaAbout() {
